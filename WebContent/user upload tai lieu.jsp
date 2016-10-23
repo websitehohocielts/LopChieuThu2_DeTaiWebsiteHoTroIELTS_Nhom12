@@ -147,7 +147,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="click Test Reading.jsp">Test Reading</a></li>
                         <li class="divider"></li>
-                        <li ><a href="click Test Listening.html.jsp">Test Listening</a></li>
+                        <li ><a href="click Test Listening.jsp">Test Listening</a></li>
                     </ul>
                 </li>
                 <li><a href="Tai%20Lieu.jsp">Tài liệu</a></li>
@@ -336,7 +336,7 @@
                       <tr>
                         <td><form>
                     
-                      <label><p id="f11"><a href="Xem Tai Lieu.html">52 cấu trúc tiếng anh</a>&nbsp;&nbsp; <a href ="#"><span class="glyphicon glyphicon-save"></p></span></a></label>
+                      <label><p id="f11"><a href="Xem Tai Lieu.jsp">52 cấu trúc tiếng anh</a>&nbsp;&nbsp; <a href ="#"><span class="glyphicon glyphicon-save"></p></span></a></label>
                     </div></form></td>
                        <td><p id="type11">PDF</p> </td><p id="f1">
                         <td><p id="size11">3.5 Mb</p></td>
