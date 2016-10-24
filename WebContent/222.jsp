@@ -237,17 +237,18 @@ img {
             </button>
             <a class="navbar-brand" href="111.jsp"><span class="glyphicon glyphicon-home"></span></a>
         </div>
-          <div class="collapse navbar-collapse">
+         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
            <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nguyễn Văn A <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="Xem thong tin ca nhan.jsp">Thông tin cá nhân</a></li>
                         <li class="divider"></li>
-                        <li ><a href="111.jsp">Đăng xuất</a></li>
+                        <li ><a href="home.jsp">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
+            
             <ul class="nav navbar-nav">
                 <li class="active"><a href="111.jsp">Home</a></li>
                 <li><a href="Gioi%20Thieu.jsp">Giới thiệu</a></li>
@@ -327,7 +328,7 @@ img {
     </div>
 </div>
 
-  
+
 
             
  <div class="modal fade" id="fdangnhap" role="dialog" ng-app="dangnhap1">
@@ -394,10 +395,10 @@ img {
                     </span>
                     </h1>
 					<div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
+    <div class="row" style="margin-right:1px">
+        <div class="col-sm-3 col-md-3"  >
+            <div class="panel-group" id="accordion" >
+                <div class="panel panel-default" >
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close" style="color: navy;">
@@ -479,7 +480,7 @@ img {
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-book" style="color: brown"></span><a href="http://www.jquery2dotnet.com">Thể Bị Động Trong Ngữ Pháp IELS</a>
+                                        <span class="glyphicon glyphicon-book" style="color: brown"></span><a href="ielts.jsp">Thể Bị Động Trong Ngữ Pháp IELS</a>
                                     </td>
                                 </tr>
                                 <tr>

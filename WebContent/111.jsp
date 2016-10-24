@@ -402,10 +402,10 @@ img {
                     </span>
                     </h1>
 					<div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
+    <div class="row" style="margin-right:1px">
+        <div class="col-sm-3 col-md-3"  >
+            <div class="panel-group" id="accordion" >
+                <div class="panel panel-default" >
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close" style="color: navy;">

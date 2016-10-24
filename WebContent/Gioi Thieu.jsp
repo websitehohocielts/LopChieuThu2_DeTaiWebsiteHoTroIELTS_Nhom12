@@ -180,7 +180,7 @@
                     </h1>
 
 <div class="container">
-    <div class="row">
+    <div class="row" style="margin-right:1px">
         <div class="col-sm-3 col-md-3">
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
