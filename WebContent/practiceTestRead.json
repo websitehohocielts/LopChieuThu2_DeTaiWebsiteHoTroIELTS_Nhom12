@@ -1,0 +1,37 @@
+ [
+      {
+         "tenbai": "Bài kiểm tra Reading 5",
+		  "linkbai": "#",
+		  "diem":8.5
+     },
+     {
+         "tenbai": "Bài kiểm tra Reading 3",
+		  "linkbai": "#",
+		  "diem":10
+     },
+     {
+         "tenbai": "Bài kiểm tra Reading 2",
+		  "linkbai": "#",
+		  "diem":1.5
+     },
+	{
+         "tenbai": "Bài kiểm tra Reading 7",
+		  "linkbai": "#",
+		  "diem":8.5
+     },
+	{
+         "tenbai": "Bài kiểm tra Reading 9",
+		  "linkbai": "#",
+		  "diem":4.9
+     },
+	{
+         "tenbai": "Bài kiểm tra Reading 10",
+		  "linkbai": "#",
+		  "diem":7.7
+     },
+	{
+         "tenbai": "Bài kiểm tra Reading 13",
+		  "linkbai": "#",
+		  "diem":6
+     }
+ ]
