@@ -1,4 +1,4 @@
-
+﻿
     <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -239,7 +239,7 @@ img {
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <button class="btn btn-primary" style="margin-top:0.2cm" data-toggle="modal" data-target="#fdangnhap">Đăng Nhập</button> &nbsp; <a href="DangKy.html"><button class="btn btn-primary" style="margin-top:0.2cm">Đăng Ký</button></a>
+                <button class="btn btn-primary" style="margin-top:0.2cm" data-toggle="modal" data-target="#fdangnhap">Đăng Nhập</button> &nbsp; <a href="DangKy.jsp"><button class="btn btn-primary" style="margin-top:0.2cm">Đăng Ký</button></a>
             </ul>
             
             <ul class="nav navbar-nav">
