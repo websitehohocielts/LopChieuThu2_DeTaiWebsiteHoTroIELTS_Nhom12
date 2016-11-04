@@ -37,8 +37,8 @@ public class DangNhapServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String user = request.getParameter("user");
-		String pass = request.getParameter("pass");
+		String user = request.getParameter("user1");
+		String pass = request.getParameter("pass1");
 		
 		if(connectDB.ConnDB(user, pass)){
 			
