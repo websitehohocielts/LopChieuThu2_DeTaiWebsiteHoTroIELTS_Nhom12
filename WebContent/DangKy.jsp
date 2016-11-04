@@ -180,7 +180,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form name=dangn1>
+                                    <form name=dangn1 action = "DangNhapServlet" method = "POST">
 
                                       <div class="modal-dialog modal-sm">
                                         <div class="modal-content">
@@ -205,7 +205,7 @@
                                         </div>
 
                                         <br />
-                                        <center><button type="submit" class="btn btn-info" ng-disabled ="!dangn1.$valid" onclick="DangNhapz()">Đăng Nhập</button>
+                                        <center><button type="submit" class="btn btn-info" ng-disabled ="!dangn1.$valid">Đăng Nhập</button>
                                             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button></center>
 
                                         </center>
@@ -222,28 +222,10 @@
                      </div>
  </div>
  </div>  
-<script type="text/javascript">
-      function DangNhapz(){
-           var us = document.getElementById("us").value;
-           var ps = document.getElementById("ps").value;
-           if(us == "admin" && ps =="admin")
-                window.location.replace('Trang Quan Ly Admin.jsp');
-            
 
-            else
-            {
-            	if (us=="nva1"&& ps=="nva1" )
-                    window.location.replace('222.jsp');
-            	else
-    
-                alert("Mật khẩu không chính xác !");
-            }
-      };
-  </script>
 <!---->
 
-
-  <div ng-controlle="demo">
+<div ng-controlle="demo">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -255,7 +237,7 @@
             <div class="form-group">
               <label for="user" class="col-lg-2 control-label">Username:</label>
               <div class="col-lg-10">
-              <input class="form-control" type="text" name="user" ng-minlength="4" ng-maxlength="15" ng-model="user" required/>
+              <input class="form-control" type="text" name="user" id ="user" ng-minlength="4" ng-maxlength="15" ng-model="user" required/>
               <span class="text-danger" ng-show="dangky.user.$error.required">User không được để trống</span>
             <span class="text-danger" ng-show="dangky.user.$error.minlength">Độ dài tối thiểu là 4</span>
             <span class="text-danger" ng-show="dangky.user.$error.maxlength">Độ dài tối đa là 15</span>
@@ -265,7 +247,7 @@
             <div class="form-group">
               <label for="pass" class="col-lg-2 control-label" align ="margin-left">Mật khẩu:</label>
                <div class="col-lg-10">
-              <input class="form-control" type="password" name="pass" ng-minlength="4" ng-maxlength="15" ng-model="pass" required/>
+              <input class="form-control" type="password" name="pass"  id ="passw" ng-minlength="4" ng-maxlength="15" ng-model="pass" required/>
               <span class="text-danger" ng-show="dangky.pass.$error.required">Password không được để trống</span>
             <span class="text-danger" ng-show="dangky.pass.$error.minlength">Độ dài password tối thiểu là 4</span>
             <span class="text-danger" ng-show="dangky.pass.$error.maxlength">Độ dài password tối đa là 15</span>
@@ -285,7 +267,7 @@
               </div>
 
               <div class="form-group" >
-              <label for="myemail" class="col-lg-2 control-label">Email :</label><div class="col-lg-10"> <input class="form-control" type="email" name="myemail" ng-model="myemail" required/></p>
+              <label for="myemail" class="col-lg-2 control-label">Email :</label><div class="col-lg-10"> <input class="form-control" type="email" name="myemail" id="email" ng-model="myemail" required/></p>
               <span class="text-danger" ng-show="dangky.myemail.$error.required">Email không được để trống</span>
               <span class="text-danger" ng-show="dangky.myemail.$error.email">Không đúng định dạng Email</span>
             </div>
@@ -295,7 +277,7 @@
             <div class="form-group">
               <label for="hoten" class="col-lg-2 control-label">Họ tên:</label>
               <div class="col-lg-10">
-              <input class="form-control" type="text" name="hoten" ng-model="hoten" required/>
+              <input class="form-control" type="text" name="hoten" id="hoten" ng-model="hoten" required/>
               <span class="text-danger" ng-show="dangky.hoten.$error.required">Họ tên không được để trống</span>
               </div>
               </div>
@@ -303,7 +285,7 @@
               <div class="form-group">
               <label for="sdt" class="col-lg-2 control-label">Số điện thoại:</label>
               <div class="col-lg-10">
-              <input class="form-control" type="number" name="sdt" ng-minlength ="10" ng-maxlength="11" ng-model="sdt" required/>
+              <input class="form-control" type="number" name="sdt" id="sdt" ng-minlength ="10" ng-maxlength="11" ng-model="sdt" required/>
               <span class="text-danger" ng-show="dangky.sdt.$error.required">Số điệ thoại không được để trống</span>
                <span class="text-danger" ng-show="dangky.sdt.$error.minlength">Số điện thoại không hợp lệ</span>
               <span class="text-danger" ng-show="dangky.sdt.$error.maxlength">Số điện thoại không hợp lệ</span>
@@ -311,23 +293,26 @@
             </div>
 
             <br />
-           <center> <button type="submit" class="btn btn-info" ng-disabled ="!dangky.$valid" data-toggle="modal" data-target="#dktc">Đăng Ký</button>
+           <center> <button type="submit" class="btn btn-info" ng-disabled ="!dangky.$valid" data-toggle="modal" data-target="#dktc" id="dktkb">Đăng Ký</button>
            </center>
-            <div class="modal fade" id="dktc" role="dialog">
-                          <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                              <div class="modal-body">
-                                <div class="alert alert-success">
-                                    <strong>Đăng ký thành công </strong>
-                                </div>
-                               
-                              </div>
-                              <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                          </div>
-                            </div>
-                          </div>
-                        </div>
+           
+           <script type ="text/javascript">
+	$(document).ready(function(){
+		$('#dktkb').click(function(event){
+			var username = $('#user').val();
+			var password = $('#passw').val();
+			var email = $('#email').val();
+			var sdt = $('#sdt').val();
+			var hoten = $('#hoten').val();
+			
+			 $.get('DangKy',{user:username,pass:password,em:email,sdt:sdt,ht:hoten},function(responseText){
+				alert(responseText);
+			});  
+			
+		});
+	});
+</script>
+           
           </form>
         </div>
       </div>
