@@ -189,19 +189,19 @@
                     
 
                                         <div class="form-group">
-                                        <label for="user">Username:</label>
-                                        <input class="form-control" type="text" id ="us" name="user" ng-minlength="4" ng-maxlength="15" ng-model="user" required/>
-                                        <span class="text-danger" ng-show="dangn1.user.$error.required">User không được để trống</span>
-                                        <span class="text-danger" ng-show="dangn1.user.$error.minlength">Độ dài tối thiểu là 4</span>
-                                        <span class="text-danger" ng-show="dangn1.user.$error.maxlength">Độ dài tối đa là 15</span>
+                                        <label for="user1">Username:</label>
+                                        <input class="form-control" type="text" id ="us" name="user1" ng-minlength="4" ng-maxlength="15" ng-model="user1" required/>
+                                        <span class="text-danger" ng-show="dangn1.user1.$error.required">User không được để trống</span>
+                                        <span class="text-danger" ng-show="dangn1.user1.$error.minlength">Độ dài tối thiểu là 4</span>
+                                        <span class="text-danger" ng-show="dangn1.user1.$error.maxlength">Độ dài tối đa là 15</span>
                                         </div>
 
                                         <div class="form-group">
                                         <label for="pass">Mật khẩu:</label>
-                                        <input id ="ps" class="form-control" type="password" name="pass" ng-minlength="4" ng-maxlength="15" ng-model="pass" required/>
-                                        <span class="text-danger" ng-show="dangn1.pass.$error.required">Password không được để trống</span>
-                                        <span class="text-danger" ng-show="dangn1.pass.$error.minlength">Độ dài password tối thiểu là 4</span>
-                                        <span class="text-danger" ng-show="dangn1.pass.$error.maxlength">Độ dài password tối đa là 15</span>
+                                        <input id ="ps" class="form-control" type="password" name="pass1" ng-minlength="4" ng-maxlength="15" ng-model="pass1" required/>
+                                        <span class="text-danger" ng-show="dangn1.pass1.$error.required">Password không được để trống</span>
+                                        <span class="text-danger" ng-show="dangn1.pass1.$error.minlength">Độ dài password tối thiểu là 4</span>
+                                        <span class="text-danger" ng-show="dangn1.pass1.$error.maxlength">Độ dài password tối đa là 15</span>
                                         </div>
 
                                         <br />
