@@ -24,35 +24,8 @@
 
         <div class="col-sm-3" style="margin-left:20px">
         
-        <div class="panel-group">
-    <div class="panel panel-info">
-     
-      <div class="panel-body">
-     
-          <img src="admin.png" class="img-circle" align="left" width="100" height="100" /><strong>Xin chào Admin</strong><br>
-        <br />
-          <a href="111.jsp"><u><strong>Đăng xuất</strong></u></a>
-    <table class="table table-hover">
-    <tbody>
-     
-      <tr>
-        <td><a href="Trang Quan Ly Admin.jsp">Quản Lý Bài Viết</a></td>
-      </tr>
-      <tr>
-        <td><a href="Quan Ly File Admin.jsp">Quản lý File</a></td>
-      </tr>
-      <tr>
-        <td><a href="Quan Ly User Admin.jsp">Quản lý user</a></td>
-      </tr>
-      <tr>
-        <td><a href="Admin xem tin nhan toi.jsp">Tin Nhắn</a></td>
-      </tr>
-    </tbody>
-  </table>
-
-        </div>
-        </div>
-        </div>
+       <%@ include file="menutraiAdmin.jsp" %>
+		
         </div>
         <div class="col-sm-5">
             <div class="panel-group">
