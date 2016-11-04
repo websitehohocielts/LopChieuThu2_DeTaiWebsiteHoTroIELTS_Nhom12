@@ -46,7 +46,7 @@ public class DangNhapServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("Trang Quan Ly Admin.jsp");
 				rd.forward(request, response);
 			}
-			if(user.equals("nva1")){
+			else{
 				RequestDispatcher rd = request.getRequestDispatcher("222.jsp");
 				rd.forward(request, response);
 			}
