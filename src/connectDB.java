@@ -22,9 +22,9 @@ public class connectDB {
 		ResultSet rs = null;	
 		boolean tmp = false;
 		try {
-			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ielts", "root", "cong12");
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
 			stm = (Statement) cnn.createStatement();
-			rs = stm.executeQuery("select * from user where username = '"+username+"' and pass ='"+password+"' ");
+			rs = stm.executeQuery("select * from ieltsonline.user where username = '"+username+"' and password ='"+password+"' ");
 			tmp = rs.next();
 		} catch (SQLException e) {
 			
