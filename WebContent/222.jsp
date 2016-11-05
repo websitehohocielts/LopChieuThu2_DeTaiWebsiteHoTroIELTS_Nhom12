@@ -2,7 +2,7 @@
     <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -79,7 +79,6 @@ $(document).on('click', '.icon_close', function (e) {
 });
 
     </script>
-
 
     <style type="text/css">
       
@@ -219,6 +218,7 @@ img {
          <hr>
  </div>
 -->
+<% HttpSession userdn = request.getSession();%>
 <div class="container" style="background-color: white; ">
 <div class="slideshow">
     <div><a href="#"><img src="images/slide_1.jpg" alt="" border="0" /></a></div>
@@ -240,7 +240,7 @@ img {
          <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
            <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nguyễn Văn A <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%=userdn.getAttribute("hoten1") %><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="Xem thong tin ca nhan.jsp">Thông tin cá nhân</a></li>
                         <li class="divider"></li>
@@ -569,24 +569,7 @@ img {
         });
   </script>
 
-  <script type="text/javascript">
-      function DangNhapz(){
-           var us = document.getElementById("us").value;
-           var ps = document.getElementById("ps").value;
-           if(us == "admin" && ps =="admin")
-               window.location.replace('Trang Quan Ly Admin.jsp');
-           
-
-           else
-           {
-           	if (us=="nva1"&& ps=="nva1" )
-                   window.location.replace('222.jsp');
-           	else
-   
-               alert("Mật khẩu không chính xác !");
-           }
-     };
-  </script>
+  
 <!--chat-->
 
 <div class="container">
@@ -648,31 +631,7 @@ img {
         <br />
            
 <hr>
-<footer class="site-footer" style="background-color: #f8f8f8">
-    <div class="row">
-   
-        <div class="col-sm-6">
-        
-             <p><strong>ieltsonline.Com - a product of Cong-Thi-Tu, Ltd.</strong></p>
+<%@ include file="footer.jsp" %>
 
-            <p>Giấy phép ĐKKD số: 0102852740 cấp bởi Sở Kế hoạch và Đầu tư Hà Nội.<br>
-                Giấy phép đào tạo tiếng Anh số: 9816/QĐ-SGD&amp;ĐT cấp bởi Sở Giáo dục và Đào tạo Hà Nội.<br>
-                Giấy phép cung cấp dịch vụ mạng xã hội học tiếng Anh trực tuyến số: 549/GP-BTTTT cấp bởi Bộ Thông tin &amp; Truyền thông. <br>
-                Địa chỉ: <span class="black1"> số nhà 13,15,23, ngõ 259/9 phố Vọng, Đồng Tâm, Hai Bà Trưng, Hà Nội.<br>
-                Tel: 1900 63 62 55  hoặc  047 30 82 838.</span> <a href="mailto:lophoc@ieltsonline.com" class="blue1">Email: lophoc@ieltsonline.com </a><br>
-           
-
-            
-        </div>
-        <div class="col-sm-6">
-             
-             <p>
-             Địa chỉ: số 64 ngõ 49 Huỳnh Thúc Kháng, Đống Đa, Hà nội. 
-            Tel: 04 6276 2098 - 04 6276 2596.
-            </p>
-        </div>
-    </div>
-   </div>
-</footer>
 </body>
 </html>

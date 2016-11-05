@@ -16,7 +16,6 @@
         $(document).ready(function()
     {
         initSlideShow();
-        
     });
     function initSlideShow()
     {
@@ -48,13 +47,9 @@
     </script>
 </head>
 <body style="background: url(images/background.jpg);">
-<!--
- <div id="logo">
-    
-         <center><img src="images/banner.jpg" style="width: 70%;" ></center>
-         <hr>
- </div>
--->
+<
+<% HttpSession userdn = request.getSession(); %>
+
 <div class="container" style="background-color: white; ">
 <div class="slideshow">
     <div><a href="#"><img src="images/slide_1.jpg" alt="" border="0" /></a></div>
@@ -76,11 +71,11 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
            <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nguyễn Văn A <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%=userdn.getAttribute("hoten1") %> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="Xem thong tin ca nhan.jsp">Thông tin cá nhân</a></li>
                         <li class="divider"></li>
-                        <li ><a href="111.jsp">Đăng xuất</a></li>
+                        <li ><a href="LogoutServlet">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -170,7 +165,7 @@
             <div class="panel-group">
                 <div class="panel panel-info">
                 <br />
-                    <img src="imges\Desert.jpg"  class="img-circle" align="left" width="100" height="100" />Xin chào: <strong></style>Nguyễn Văn A</strong><br>
+                    <img src="imges\Desert.jpg"  class="img-circle" align="left" width="100" height="100" />Xin chào: <strong></style><%=userdn.getAttribute("hoten1") %></strong><br>
                         <table class="table table-hover">
                         <tbody>
                           <tr>
@@ -197,8 +192,7 @@
             </div>
     
 
-
-   <form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate>
+   <form ng-app="myApp1" ng-controller="validateCtrl1" name="myForm" novalidate>
    <div class="row">
         <div class="col-sm-5">
         <div class="panel-group" style="margin-left:10px; margin-right:10px">
@@ -208,38 +202,35 @@
        
         <div class="form-group">
         <label for="us">Username</label>
-        <input class ="form-control" type="text" name="us" value="nva1" disabled> 
+        <input class ="form-control" type="text" name="us" value="<%=userdn.getAttribute("username1") %>" disabled> 
        </div>
 
 
        <div class="form-group">
         <label for="ht">Họ Tên</label>
-        <input class ="form-control" type="text" name="ht" ng-model="ht" required>
-        <span style="color:red" ng-show="myForm.ht.$dirty && myForm.ht.$invalid">
+        <input class ="form-control" type="text" name="ht" value="<%=userdn.getAttribute("hoten1") %>" ng-model="ht" required>
+       <!--  <span style="color:red" ng-show="myForm.ht.$dirty && myForm.ht.$invalid">
         <span ng-show="myForm.ht.$error.required">Họ tên không thể để trống.</span>
-        </span>
+        </span> -->
        </div>
 
-        <div class="form-group">
-        <label for="ns">Ngày Sinh</label>
-        <input class ="form-control" type="date" name="ns">
-       </div>
+      
 
 
        <div class="form-group">
         <label for="email">Email</label>
-        <input class ="form-control" type="email" name="email" ng-model="email" required>
-        <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+        <input class ="form-control" type="email" name="email" value="<%=userdn.getAttribute("email") %>" ng-model="email" required>
+        <!-- <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
         <span ng-show="myForm.email.$error.required">Email không được để trống</span>
-        </span>
+        </span> -->
        </div>
 
        <div class="form-group">
         <label for="sdt">Số điện thoại</label>
-        <input class ="form-control" type="number" name="sdt" ng-model="sdt" required>
-        <span style="color:red" ng-show="myForm.sdt.$dirty && myForm.sdt.$invalid">
+        <input class ="form-control" type="number" name="sdt" value="<%=userdn.getAttribute("sodienthoai") %>" ng-model="sdt" required>
+        <!-- <span style="color:red" ng-show="myForm.sdt.$dirty && myForm.sdt.$invalid">
         <span ng-show="myForm.sdt.$error.required">Số điện thoại không được để trống</span>
-        </span>
+        </span> -->
        </div>
 
 
@@ -266,17 +257,16 @@
 
             </div>
 
-
         </div> 
-<script>
+<!-- <script>
 var app = angular.module('myApp', []);
 app.controller('validateCtrl', function($scope) {
-    $scope.ht = 'Nguyễn Văn A';
-    $scope.email = 'jnguyenvana@gmail.com';
+     $scope.ht = "dddd";
+    $scope.email = "";
     $scope.ns = '10-12-1996';
-    $scope.sdt = 0969234123
+    $scope.sdt = 0969234123 
 });
-</script>
+</script> -->
 
 
  <div class="modal fade" id="myModal" role="dialog">
