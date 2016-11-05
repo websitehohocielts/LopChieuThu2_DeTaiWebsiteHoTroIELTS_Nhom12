@@ -244,7 +244,7 @@ img {
                     <ul class="dropdown-menu">
                         <li><a href="Xem thong tin ca nhan.jsp">Thông tin cá nhân</a></li>
                         <li class="divider"></li>
-                        <li ><a href="111.jsp">Đăng xuất</a></li>
+                        <li ><a href="LogoutServlet">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
