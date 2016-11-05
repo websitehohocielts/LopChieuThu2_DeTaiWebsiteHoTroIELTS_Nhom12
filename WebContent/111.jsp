@@ -1,8 +1,6 @@
-﻿
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -343,7 +341,7 @@ img {
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form name=dangn1>
+                                    <form name=dangn1 action = "DangNhapServlet" method = "POST">
 
                                       <div class="modal-dialog modal-sm">
                                         <div class="modal-content">
@@ -368,7 +366,7 @@ img {
                                         </div>
 
                                         <br />
-                                        <center><button type="submit" class="btn btn-info" ng-disabled ="!dangn1.$valid" onclick="DangNhapz()">Đăng Nhập</button>
+                                        <center><button type="submit" class="btn btn-info" ng-disabled ="!dangn1.$valid">Đăng Nhập</button>
                                             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button></center>
 
                                         </center>
@@ -576,24 +574,6 @@ img {
         });
   </script>
 
-  <script type="text/javascript">
-      function DangNhapz(){
-           var us = document.getElementById("us").value;
-           var ps = document.getElementById("ps").value;
-           if(us == "admin" && ps =="admin")
-               window.location.replace('Trang Quan Ly Admin.jsp');
-           
-
-           else
-           {
-           	if (us=="nva1"&& ps=="nva1" )
-                   window.location.replace('222.jsp');
-           	else
-   
-               alert("Mật khẩu không chính xác !");
-           }
-     };
-  </script>
 <!--chat-->
 
 <div class="container">
