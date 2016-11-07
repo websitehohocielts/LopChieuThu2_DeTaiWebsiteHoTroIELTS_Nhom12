@@ -62,7 +62,7 @@ public class DangKy extends HttpServlet {
 			}
 			try {
 				stm = (Statement) cnn.createStatement();
-				stm.executeUpdate("insert into ieltsonline.user values ('"+user+"','"+pass+"','"+hoten+"','"+sdt+"','"+mail+"','2',1,'"+Tss()+"')");
+				stm.executeUpdate("insert into ieltsonline.user values ('"+user+"','"+pass+"','"+hoten+"','"+mail+"','2',1,'"+Tss()+"','"+sdt+"')");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
