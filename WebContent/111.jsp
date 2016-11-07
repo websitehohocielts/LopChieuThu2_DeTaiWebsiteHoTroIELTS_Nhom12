@@ -341,13 +341,12 @@ img {
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form name=dangn1 action = "DangNhapServlet" method = "POST">
+                                    <form name=dangn1 action = "loginbean.jsp" method = "POST">
 
                                       <div class="modal-dialog modal-sm">
                                         <div class="modal-content">
                                           <div class="modal-body">
                                 
-                    
 
                                         <div class="form-group">
                                         <label for="user">Username:</label>
@@ -371,8 +370,6 @@ img {
 
                                         </center>
                                        
-                                  
-                        
                                     </form>
                                 </div>
                             </div>
