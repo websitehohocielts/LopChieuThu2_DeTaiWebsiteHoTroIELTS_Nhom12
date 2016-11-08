@@ -5,7 +5,7 @@ create table role(
                     roleName varchar(45)
                     );
 create table user(
-				username varchar(45) primary key,
+		username varchar(20) primary key,
                 password varchar(45),
                 hoten varchar(60),
                 email varchar(45),
