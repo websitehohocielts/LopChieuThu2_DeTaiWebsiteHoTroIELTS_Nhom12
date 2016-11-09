@@ -31,6 +31,8 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession userdn = request.getSession();
+		String user = (String) userdn.getAttribute("username1");
+		connectDB.DangXuat(user);
 		userdn.invalidate();
 		
 		RequestDispatcher rd = request.getRequestDispatcher("111.jsp");

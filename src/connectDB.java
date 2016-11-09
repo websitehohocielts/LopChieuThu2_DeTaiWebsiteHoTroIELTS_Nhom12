@@ -1,9 +1,16 @@
 
 
+import java.io.IOException;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
@@ -120,5 +127,40 @@ public class connectDB {
 
       return user;
 	}
+	
+	
+	public static void DangXuat(String username)
+	{
+		
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Connection cnn = null;
+			Statement stm = null;	
+			try {
+				cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				stm = (Statement) cnn.createStatement();
+				stm.executeUpdate("update ieltsonline.user set thoigianhoatdonglancuoi = '"+layngay()+"' where username = '"+username+"'");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+public static String layngay(){
+		
+		Date thoiGian=new Date(System.currentTimeMillis());
+		SimpleDateFormat dinhDangThoiGian = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return dinhDangThoiGian.format(thoiGian.getTime());
+
+	}
+
 
 }
