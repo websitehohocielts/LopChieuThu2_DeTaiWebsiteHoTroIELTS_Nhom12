@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+    <sql:setDataSource
+driver="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost/ieltsonline"
+user="root"
+password="cong12"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +21,74 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <link href="fonts/glyphicons-halflings-regular.woff" rel="fonts">
+  <script type="text/javascript">
+   $(document).ready(function(){
+	  
+	  document.getElementById("page").value = 1;
+	   var page = $('#page').val();
+		$.get('DanhSachUerServlet',{page:page},function(responseJson){
+			 if(responseJson!=null){
+           	   $("#tblDanhSach").find("tr:gt(0)").remove();
+           	   var table1 = $("#tblDanhSach");
+	               $.each(responseJson, function(key,value) { 
+	               		   var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+	               		rowNew.children().eq(0).html('<a href ="Admin xem thong tin ca nhan user.jsp?q='+value['username']+'" >'+value['username']+' </a>');
+	                       rowNew.children().eq(1).text(value['hoten']); 
+	                       rowNew.children().eq(2).text(value['email']); 
+	                       rowNew.children().eq(3).text(value['sodienthoai']); 
+	                       rowNew.children().eq(4).text(value['thoigianhdcuoi']); 
+	                       //rowNew.children().eq(5).text(value['trangthai']); 
+	                       
+	                       if(value['trangthai'] == true){
+	                    	   rowNew.children().eq(5).html('<label style="color:green"><input type="checkbox" checked> Actived</label>');
+	                       }
+	                       else{
+	                    	   rowNew.children().eq(5).html('<label style="color:red"><input type="checkbox"> Disabled</label>');
+	                       }
+	                       rowNew.appendTo(table1);
+	               });
+               }
+		});
+	   
+   })
+   
+   function chuyentrang(){
+	   var trang = document.getElementById("page").value;
+	  
+	   if(trang <= 0){
+		   alert("Nhập lại trang !");
+		   return;
+	   }
+	   else{
+		   var page = $('#page').val();
+			$.get('DanhSachUerServlet',{page:page},function(responseJson){
+				 if(responseJson!=null){
+	           	   $("#tblDanhSach").find("tr:gt(0)").remove();
+	           	   var table1 = $("#tblDanhSach");
+		               $.each(responseJson, function(key,value) { 
+		               		   var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+		                       rowNew.children().eq(0).html('<a href ="Admin xem thong tin ca nhan user.jsp?q='+value['username']+'" >'+value['username']+' </a>'); 
+		                       rowNew.children().eq(1).text(value['hoten']); 
+		                       rowNew.children().eq(2).text(value['email']); 
+		                       rowNew.children().eq(3).text(value['sodienthoai']); 
+		                       rowNew.children().eq(4).text(value['thoigianhdcuoi']); 
+		                       //rowNew.children().eq(5).text(value['trangthai']); 
+		                       if(value['trangthai'] == true){
+		                    	   rowNew.children().eq(5).html('<label style="color:green"><input type="checkbox" checked> Actived</label>');
+		                       }
+		                       else{
+		                    	   rowNew.children().eq(5).html('<label style="color:red"><input type="checkbox"> Disabled</label>');
+		                       }
+		                       
+		                       rowNew.appendTo(table1);
+		                       
+		                       
+		               });
+	               }
+			});
+	   }
+   }
+  </script>
 </head>
 <body>
 <div class="panel-group">
@@ -23,7 +98,6 @@
 	<div class="row">
 
         <div class="col-sm-3" style="margin-left:20px">
-        
         <div class="panel-group">
     <div class="panel panel-info">
      
@@ -60,101 +134,51 @@
           <div class="panel panel-info">
           <div class="panel-heading"><strong><center><h4>Quản Lý User</h4></center></strong></div>
              <div class="panel-body">
-
-              <table class="table table-bordered">
-                    <thead><br/>
-                      <tr>
-                        <th>Họ Tên</th>
-                        
-                        <th>Tuổi</th>
-                        <th>Username</th>
-                       <th>Mail</th>
-                       <th>Active</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                      <label><a id="ten1" href="Admin xem thong tin ca nhan user.jsp">Trần Văn A</a></label>
-                  		</td>	
-                        <td><p id="tuoi1">19</p> </td>
-                        <td><p id="username1">tranvana196</p></td>
-                      	<td><p id="mail1">tranvana@gmail.com</p></td>
-                      	<td><label><input id="link1" type="checkbox" value="" disabled checked=""><span style="color: green;"> Active</span></label></td>
-                      </tr>
-                        <tr>
-                        <td>
-                    	  <label><a id="ten2" href="#">Nguyễn Văn Cya</a></label>
-                  		</td>	
-                        <td><p id="tuoi2">21</p> </td>
-                        <td><p id="username2">Cya78</p></td>
-                        <td><p id="mail2">Cya145@gmail.com</p></td>
-                      	<td><label><input id="link2" type="checkbox" value="" disabled checked=""><span style="color: green;"> Active</span></label></td>
-                      </tr>
-                      <tr>
-                        <td>
-                      <label><a id="ten3" href="#">Nguyễn Văn Tý</a></label>
-                  		</td>	
-                        <td><p id="tuoi3">30</p> </td>
-                        <td><p id="username3">TyNguyenAv123</p></td>
-                        <td><p id="mail3">nvty123@gmail.com</p></td>
-                      	<td><label><input id="link3" type="checkbox" value="" disabled unchecked=""><span style="color: red;"> Disable</span></label></td>
-                      </tr>
-                    </tbody>
-                  </table>
+             
+            
+             <center><strong> Tìm kiếm User</strong></center>
+             <form class="form-horizontal" role="form" id ="form1">
+             <div class = "row"> 
+             <div class="col-sm-5">
+				<div class="form-group">
+			  	  <input type="text" class="form-control" id="tkusername" placeholder="Username" size="50px"><br />
+			  	 
+				 </div>
+				 </div>
+				 <div class="col-sm-1"></div>
+				   <div class="col-sm-5">
+				<div class="form-group">
+				   
+			  	  <input type="text" class="form-control" id="tkemail" placeholder="Email">
+			  	
+				 </div>
+				 </div>
+				 </div>
+			 <input class="btn btn-success" type ="button" id ="timuser" value ="Tìm">
+			  </form>
+			  <br /> 
+			 
+	<sql:query var="items" sql="SELECT username,hoten,email,sodienthoai,thoigianhoatdonglancuoi,trangthai FROM user where roleID = '2' limit 10"/>
+	
+	<div id ="bangdanhsach">
+                  <table cellspacing="0" id="tblDanhSach" class="table table-bordered">
+						<tr>
+							<th scope="col">Username</th>
+							<th scope="col">Họ tên</th>
+							<th scope="col">Email</th>
+							<th scope="col">Số điện thoại</th>
+							<th scope="col">Thời gian hoạt động lần cuối</th>
+							<th scope="col">Active</th>
+						</tr>
+					</table>
+                  </div>
+               
                   <br/>
                   <center>
-                  	<button class="btn btn-primary" onclick="laydanhsachUser(1)">1</button>
-                  	<button class="btn btn-primary" onclick="laydanhsachUser(2)">2</button>
-                  	<button class="btn btn-primary">></button>
-                    <script type="text/javascript">
-                      function laydanhsachUser(trang){
-                        var xhr = new XMLHttpRequest();
-                        xhr.onreadystatechange = function(){
-                          if(xhr.readyState ===4 && xhr.status===200){
-                            var items = JSON.parse(xhr.responseText);
-                      
-                            var trangkt = trang * 3 -1;
-                            var trangbd = trangkt-2;
-                             var y = 0;
-                            for(var index=0;index<items.length;index++){
-                               
-                              if(index >= trangbd && index<= trangkt)
-                              {
-                                y= y+1;
-                                if(y==1){
-                                document.getElementById("ten1").innerHTML = items[index].ten;
-                                document.getElementById("tuoi1").innerHTML = items[index].tuoi;
-                                document.getElementById("link1").href = items[index].linkbai;
-                                document.getElementById("username1").innerHTML = items[index].username;
-                                document.getElementById("mail1").innerHTML = items[index].mail;
-                                
-                                }
-                                if(y==2){
-                                   document.getElementById("ten2").innerHTML = items[index].ten;
-                                document.getElementById("tuoi2").innerHTML = items[index].tuoi;
-                                document.getElementById("link2").href = items[index].linkbai;
-                                document.getElementById("username2").innerHTML = items[index].username;
-                                document.getElementById("mail2").innerHTML = items[index].mail;
-                                }
-                                if(y==3){
-                                 document.getElementById("ten3").innerHTML = items[index].ten;
-                                document.getElementById("tuoi3").innerHTML = items[index].tuoi;
-                                document.getElementById("link3").href = items[index].linkbai;
-                                document.getElementById("username3").innerHTML = items[index].username;
-                                document.getElementById("mail3").innerHTML = items[index].mail;
-                                }
-                               
-                              }
-                            }
-                         
-                          }
-                        }
-                        xhr.open("GET","quanlyuser.json","true");
-                        xhr.send();
-
-                      }
-                      </script>
+                 
+                 <span> Chuyển tới trang :  <input type ="number" name="page" id ="page" style ="width:50px">
+                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
+   				
                   </center>
           </div>   
         </div>
