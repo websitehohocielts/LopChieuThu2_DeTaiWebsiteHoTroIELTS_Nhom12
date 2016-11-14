@@ -58,6 +58,11 @@ public class CapNhatThongTin extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		    HttpSession userdn = request.getSession();
+			
+			userdn.setAttribute("hoten1", hoten);
+			userdn.setAttribute("sodienthoai", sdt);
+			userdn.setAttribute("email", mail);
 			response.setContentType("text/plain");  
 			  response.setCharacterEncoding("UTF-8"); 
 			response.getWriter().write("Cập nhật thông tin thành công !"); 
