@@ -211,13 +211,7 @@ img {
     </style>
 </head>
 <body style="background: url(images/background.jpg);">
-<!--
- <div id="logo">
-    
-         <center><img src="images/banner.jpg" style="width: 70%;" ></center>
-         <hr>
- </div>
--->
+
 <% HttpSession userdn = request.getSession();%>
 <div class="container" style="background-color: white; ">
 <div class="slideshow">
