@@ -56,10 +56,10 @@ public class DangNhapServlet extends HttpServlet {
 			userdn.setAttribute("hoten1", uss.getHoten());
 			userdn.setAttribute("sodienthoai", uss.getSodienthoai());
 			userdn.setAttribute("email", uss.getEmail());
-
-			String tb = "";
-			userdn.setAttribute("Thongbao", tb);
-			if(user.equals("admin")){
+			userdn.setAttribute("role", uss.getRole());
+			
+			String role = (String) userdn.getAttribute("role");
+			if(role.equals("1")){
 				RequestDispatcher rd = request.getRequestDispatcher("Trang Quan Ly Admin.jsp");
 				rd.forward(request, response);
 			}
