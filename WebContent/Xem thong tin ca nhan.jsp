@@ -192,7 +192,7 @@
             </div>
     
 
-   <form ng-app="myApp1" ng-controller="validateCtrl1" name="myForm" novalidate>
+   <form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate>
    <div class="row">
         <div class="col-sm-5">
         <div class="panel-group" style="margin-left:10px; margin-right:10px">
@@ -202,16 +202,16 @@
        
         <div class="form-group">
         <label for="us">Username</label>
-        <input class ="form-control" type="text" name="us" value="<%=userdn.getAttribute("username1") %>" disabled> 
+        <input class ="form-control" type="text" name="us" id = "us"value="<%=userdn.getAttribute("username1") %>" disabled> 
        </div>
 
 
        <div class="form-group">
         <label for="ht">Họ Tên</label>
-        <input class ="form-control" type="text" name="ht" value="<%=userdn.getAttribute("hoten1") %>" ng-model="ht" required>
-       <!--  <span style="color:red" ng-show="myForm.ht.$dirty && myForm.ht.$invalid">
+        <input class ="form-control" type="text" name="ht" id ="ht" value="<%=userdn.getAttribute("hoten1") %>" ng-model="ht" required>
+        <span style="color:red" ng-show="myForm.ht.$dirty && myForm.ht.$invalid">
         <span ng-show="myForm.ht.$error.required">Họ tên không thể để trống.</span>
-        </span> -->
+        </span> 
        </div>
 
       
@@ -219,23 +219,23 @@
 
        <div class="form-group">
         <label for="email">Email</label>
-        <input class ="form-control" type="email" name="email" value="<%=userdn.getAttribute("email") %>" ng-model="email" required>
-        <!-- <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+        <input class ="form-control" type="email" name="email" id ="email" value="<%=userdn.getAttribute("email") %>" ng-model="email" required>
+        <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
         <span ng-show="myForm.email.$error.required">Email không được để trống</span>
-        </span> -->
+        </span> 
        </div>
 
        <div class="form-group">
         <label for="sdt">Số điện thoại</label>
-        <input class ="form-control" type="number" name="sdt" value="<%=userdn.getAttribute("sodienthoai") %>" ng-model="sdt" required>
-        <!-- <span style="color:red" ng-show="myForm.sdt.$dirty && myForm.sdt.$invalid">
+        <input class ="form-control" type="number" name="sdt" id ="sdt" ng-minlength ="9" ng-maxlength="11" value="<%=userdn.getAttribute("sodienthoai") %>" ng-model="sdt" required>
+         <span style="color:red" ng-show="myForm.sdt.$dirty && myForm.sdt.$invalid">
+        <span ng-show="myForm.sdt.$error.maxlength">Số điện thoại không hợp lệ</span>
+          <span ng-show="myForm.sdt.$error.minlength">Số điện thoại không hợp lệ</span>
         <span ng-show="myForm.sdt.$error.required">Số điện thoại không được để trống</span>
-        </span> -->
+        </span> 
        </div>
-
-
         <p>
-        <center><input type="submit" class="btn btn-primary" ng-disabled="myForm.ht.$dirty && myForm.ht.$invalid || myForm.email.$dirty && myForm.email.$invalid || myForm.sdt.$dirty && myForm.sdt.$invalid" value="Cập nhật" data-target="#myModal" data-toggle="modal"></center>
+        <center><input type="submit" class="btn btn-primary" ng-disabled="myForm.sdt.$error.minlength||myForm.sdt.$error.maxlength|| myForm.ht.$dirty && myForm.ht.$invalid || myForm.email.$dirty && myForm.email.$invalid || myForm.sdt.$dirty && myForm.sdt.$invalid" value="Cập nhật" data-target="#myModal" data-toggle="modal"></center>
         </p>
         </div>
         </div>
@@ -258,32 +258,46 @@
             </div>
 
         </div> 
-<!-- <script>
+<script>
 var app = angular.module('myApp', []);
 app.controller('validateCtrl', function($scope) {
-     $scope.ht = "dddd";
-    $scope.email = "";
-    $scope.ns = '10-12-1996';
-    $scope.sdt = 0969234123 
+     $scope.ht = "<%=userdn.getAttribute("hoten") %>";
+    $scope.email = "<%=userdn.getAttribute("email") %>";
+    $scope.sdt = "<%=userdn.getAttribute("sodienthoai") %>"
 });
-</script> -->
+</script> 
 
 
  <div class="modal fade" id="myModal" role="dialog">
-                           <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                   <div class="modal-body">
-                    <div class="alert alert-success">
-                        <strong>Success!</strong> Thay đổi thông tin thành công.
+                    <div class="alert alert-warning">
+                        Bạn có chắc muốn thay đổi thông tin không ?
                     </div>
                    
                   </div>
                   <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button class = "btn btn-primary" name="capnhatthongtin" id= "capnhatthongtin">Đồng ý</button>  <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
                     </div>
                 </div>
               </div>
             </div>
+            
+            <script type="text/javascript">
+            $('#capnhatthongtin').click(function(event){
+    			var username = $('#us').val();
+    			var hoten = $('#ht').val();
+    			var email = $('#email').val();
+    			var sdt = $('#sdt').val();
+    	
+    			 $.get('CapNhatThongTin',{user:username,em:email,sdt:sdt,ht:hoten},function(responseText){
+    				alert(responseText);
+    			});  
+    			
+    			 document.getElementById("myModal").close();
+    		});
+            </script>
 <!--sdfsdfsdf-->   
 
           <br />
