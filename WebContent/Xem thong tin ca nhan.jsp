@@ -261,7 +261,7 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('validateCtrl', function($scope) {
-     $scope.ht = "<%=userdn.getAttribute("hoten") %>";
+     $scope.ht = "<%=userdn.getAttribute("hoten1") %>";
     $scope.email = "<%=userdn.getAttribute("email") %>";
     $scope.sdt = "<%=userdn.getAttribute("sodienthoai") %>"
 });
