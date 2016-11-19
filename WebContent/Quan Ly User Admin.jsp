@@ -60,6 +60,8 @@ password="cong12"/>
 		   return;
 	   }
 	   else{
+		   if(document.getElementById("tkusername").value == "" && document.getElementById("tkemail").value == "")
+			{
 		   var page = $('#page').val();
 			$.get('DanhSachUerServlet',{page:page},function(responseJson){
 				 if(responseJson!=null){
@@ -87,8 +89,87 @@ password="cong12"/>
 	               }
 			});
 	   }
+		   else{
+			   tim();
+		   }
    }
-  </script>
+   }
+   
+	function tim() {
+
+				if (document.getElementById("timtheouser").checked == true) {
+					if(document.getElementById("tkusername").value ==""){
+						return;
+					}
+					else{
+						
+						var page = $('#page').val();
+						var usr = $('#tkusername').val();
+						$.get('TimKiemUserTheoUserNameServlet',{page:page,us:usr},function(responseJson){
+							 if(responseJson!=null){
+				           	   $("#tblDanhSach").find("tr:gt(0)").remove();
+				           	   var table1 = $("#tblDanhSach");
+					               $.each(responseJson, function(key,value) { 
+					               		   var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+					                       rowNew.children().eq(0).html('<a href ="Admin xem thong tin ca nhan user.jsp?q='+value['username']+'" >'+value['username']+' </a>'); 
+					                       rowNew.children().eq(1).text(value['hoten']); 
+					                       rowNew.children().eq(2).text(value['email']); 
+					                       rowNew.children().eq(3).text(value['sodienthoai']); 
+					                       rowNew.children().eq(4).text(value['thoigianhdcuoi']); 
+					                       //rowNew.children().eq(5).text(value['trangthai']); 
+					                       if(value['trangthai'] == true){
+					                    	   rowNew.children().eq(5).html('<label style="color:green"><input type="checkbox" checked> Actived</label>');
+					                       }
+					                       else{
+					                    	   rowNew.children().eq(5).html('<label style="color:red"><input type="checkbox"> Disabled</label>');
+					                       }
+					                       
+					                       rowNew.appendTo(table1);
+					                       
+					                       
+					               });
+				               }
+						});
+					}
+				}
+
+				if(document.getElementById("timtheoemail").checked == true){
+					if(document.getElementById("tkemail").value ==""){
+						return;
+					}
+					else{
+						
+						var page = $('#page').val();
+						var em = $('#tkemail').val();
+						$.get('TimKiemUserTheoEmailServlet',{page:page,em:em},function(responseJson){
+							 if(responseJson!=null){
+				           	   $("#tblDanhSach").find("tr:gt(0)").remove();
+				           	   var table1 = $("#tblDanhSach");
+					               $.each(responseJson, function(key,value) { 
+					               		   var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+					                       rowNew.children().eq(0).html('<a href ="Admin xem thong tin ca nhan user.jsp?q='+value['username']+'" >'+value['username']+' </a>'); 
+					                       rowNew.children().eq(1).text(value['hoten']); 
+					                       rowNew.children().eq(2).text(value['email']); 
+					                       rowNew.children().eq(3).text(value['sodienthoai']); 
+					                       rowNew.children().eq(4).text(value['thoigianhdcuoi']); 
+					                       //rowNew.children().eq(5).text(value['trangthai']); 
+					                       if(value['trangthai'] == true){
+					                    	   rowNew.children().eq(5).html('<label style="color:green"><input type="checkbox" checked> Actived</label>');
+					                       }
+					                       else{
+					                    	   rowNew.children().eq(5).html('<label style="color:red"><input type="checkbox"> Disabled</label>');
+					                       }
+					                       
+					                       rowNew.appendTo(table1);
+					                       
+					                       
+					               });
+				               }
+						});
+					}
+				}
+			}
+		</script>
 </head>
 <body>
 <div class="panel-group">
@@ -135,31 +216,39 @@ password="cong12"/>
           <div class="panel-heading"><strong><center><h4>Quản Lý User</h4></center></strong></div>
              <div class="panel-body">
              
-            
+            <div class="row">
+  				<div class="col-md-6 col-md-offset-3">
              <center><strong> Tìm kiếm User</strong></center>
-             <form class="form-horizontal" role="form" id ="form1">
-             <div class = "row"> 
-             <div class="col-sm-5">
-				<div class="form-group">
-			  	  <input type="text" class="form-control" id="tkusername" placeholder="Username" size="50px"><br />
-			  	 
-				 </div>
-				 </div>
-				 <div class="col-sm-1"></div>
-				   <div class="col-sm-5">
-				<div class="form-group">
-				   
-			  	  <input type="text" class="form-control" id="tkemail" placeholder="Email">
-			  	
-				 </div>
-				 </div>
-				 </div>
-			 <input class="btn btn-success" type ="button" id ="timuser" value ="Tìm">
-			  </form>
+             <form role="form">
+			  <div class="form-group">
+			    <label for="tkusername">Username</label>
+			    <input type="email" class="form-control" id="tkusername" placeholder="Enter Username">
+			     
+			   <div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="timtheouser" value="option1">
+				    Tìm theo username
+				  </label>
+				</div>
+			 
+			    <label for="tkemail">Email</label>
+			    <input type="text" class="form-control" id="tkemail" placeholder="Enter Email">
+			     <div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="timtheoemail" value="option2">
+				    Tìm theo Email
+				  </label>
+				</div>
+			  </div>
+			 
+			  <center><input type="button" class="btn btn-default" value="Tìm kiếm" id ="timkiem" name ="timkiem" onclick="tim()"></center>
+			</form>
+			</div>
+			</div>
 			  <br /> 
 			 
-	<sql:query var="items" sql="SELECT username,hoten,email,sodienthoai,thoigianhoatdonglancuoi,trangthai FROM user where roleID = '2' limit 10"/>
-	
+<%-- 	<sql:query var="items" sql="SELECT username,hoten,email,sodienthoai,thoigianhoatdonglancuoi,trangthai FROM user where roleID = '2' limit 10"/>
+ --%>	
 	<div id ="bangdanhsach">
                   <table cellspacing="0" id="tblDanhSach" class="table table-bordered">
 						<tr>
