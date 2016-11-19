@@ -57,29 +57,30 @@ public class DangNhapServlet extends HttpServlet {
 			userdn.setAttribute("sodienthoai", uss.getSodienthoai());
 			userdn.setAttribute("email", uss.getEmail());
 			userdn.setAttribute("role", uss.getRole());
-			
+			userdn.setAttribute("trangthai", uss.isTrangthai());
 			String role = (String) userdn.getAttribute("role");
+			boolean tt = (boolean) userdn.getAttribute("trangthai");
 			if(role.equals("1")){
 				RequestDispatcher rd = request.getRequestDispatcher("Trang Quan Ly Admin.jsp");
 				rd.forward(request, response);
 			}
 			else{
-				RequestDispatcher rd = request.getRequestDispatcher("222.jsp");
-				rd.forward(request, response);
+				if(tt == true)
+				{
+					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+					rd.forward(request, response);
+				}
+				else
+				{
+					RequestDispatcher rd = request.getRequestDispatcher("DangNhapTaiKhoanBiKhoa.jsp");
+					rd.forward(request, response);
+				}
 			}
 		}
 		else
 		{
-			
-			HttpSession Loi = request.getSession();
-			String tb = "Sai mật khẩu, đăng ký hoặc đăng nhập lại !";
-			Loi.setAttribute("Thongbao", tb);
-	RequestDispatcher rd = request.getRequestDispatcher("DangKy.jsp");
-	rd.forward(request, response);
-			
-			
-			
-			
+			RequestDispatcher rd = request.getRequestDispatcher("DangNhapThatBai.jsp");
+			rd.forward(request, response);
 		}
 	}
 

@@ -14,7 +14,7 @@
      
           <img src="admin.png" class="img-circle" align="left" width="100" height="100" /><strong>Xin chào Admin</strong><br>
         <br />
-          <a href="111.jsp"><u><strong>Đăng xuất</strong></u></a>
+          <a href="LogoutServlet"><u><strong>Đăng xuất</strong></u></a>
     <table class="table table-hover">
     <tbody>
      

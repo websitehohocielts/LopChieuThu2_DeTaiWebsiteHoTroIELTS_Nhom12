@@ -68,7 +68,7 @@ public class DangKy extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.setContentType("text/plain");  
-			  response.setCharacterEncoding("UTF-8"); 
+			 response.setCharacterEncoding("UTF-8"); 
 			response.getWriter().write("Đăng ký thành công ! Mời bạn đăng nhập"); 
 		}
 	}

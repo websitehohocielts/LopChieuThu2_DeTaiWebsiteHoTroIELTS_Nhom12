@@ -129,7 +129,7 @@
 	          		<table class="table table-hover">
 					    <tbody>
 					      <tr>
-					        <td>Trạng thái tài khỏan:<input type="checkbox" value="" checked id="activee" data-toggle="modal" data-target="#chontrangthai"> <label id = "lblactive" <span style="color: green;"> Active</span></label></td>
+					        <td>Trạng thái tài khỏan:<input type="checkbox" value="" checked id="activee" data-toggle="modal" data-target="#chontrangthai"> <label id = "lblactive"> <span style="color: green;"> Active</span></label></td>
 					      </tr>
 					      <tr>
 					        <td data-toggle="modal" data-target="#adminguitn"><a href="#">Gửi tin nhắn  <span class="glyphicon glyphicon-envelope" ></span></td></a>

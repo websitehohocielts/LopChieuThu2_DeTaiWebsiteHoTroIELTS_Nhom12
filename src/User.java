@@ -6,6 +6,8 @@ public class User {
 	private String email;
 	private boolean trangthai;
 	private String role;
+	
+	
 	public String getRole() {
 		return role;
 	}

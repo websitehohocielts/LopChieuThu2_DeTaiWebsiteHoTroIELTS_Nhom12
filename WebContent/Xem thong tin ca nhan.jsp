@@ -243,7 +243,21 @@
         </form>
         </div>
 
-
+<div class="modal fade" id="capnhatttthanhcong" role="dialog">
+			    <div class="modal-dialog">
+			     
+			      <div class="modal-content">
+			        <div class="modal-body">
+			          <p>Cập nhật thông tin thành công !.</p>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+			  
          <div class="col-sm-3">
                 <div class="panel-group">
                 <div class="panel panel-info">
@@ -278,7 +292,7 @@ app.controller('validateCtrl', function($scope) {
                    
                   </div>
                   <div class="modal-footer">
-                        <button class = "btn btn-primary" name="capnhatthongtin" id= "capnhatthongtin">Đồng ý</button>  <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                        <button class = "btn btn-primary" name="capnhatthongtin" id= "capnhatthongtin" data-dismiss="modal">Đồng ý</button>  <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
                     </div>
                 </div>
               </div>
@@ -292,10 +306,12 @@ app.controller('validateCtrl', function($scope) {
     			var sdt = $('#sdt').val();
     	
     			 $.get('CapNhatThongTin',{user:username,em:email,sdt:sdt,ht:hoten},function(responseText){
-    				alert(responseText);
+    				/* alert(responseText); */
+    				 $('#'+responseText+'').modal('show');
     			});  
     			
-    			 document.getElementById("myModal").close();
+    			
+    			 $('#myModal').dialog("close")
     		});
             </script>
 <!--sdfsdfsdf-->   

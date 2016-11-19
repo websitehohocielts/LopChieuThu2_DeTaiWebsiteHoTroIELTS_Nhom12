@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
@@ -58,14 +59,15 @@ public class CapNhatThongTin extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    HttpSession userdn = request.getSession();
-			
-			userdn.setAttribute("hoten1", hoten);
-			userdn.setAttribute("sodienthoai", sdt);
-			userdn.setAttribute("email", mail);
+			 HttpSession userdn = request.getSession();
+				
+				userdn.setAttribute("hoten1", hoten);
+				userdn.setAttribute("sodienthoai", sdt);
+				userdn.setAttribute("email", mail);
 			response.setContentType("text/plain");  
 			  response.setCharacterEncoding("UTF-8"); 
-			response.getWriter().write("Cập nhật thông tin thành công !"); 
+			//response.getWriter().write("Cập nhật thông tin thành công !"); 
+			  response.getWriter().write("capnhatttthanhcong");
 	}
 
 	/**
