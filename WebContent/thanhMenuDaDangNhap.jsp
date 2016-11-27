@@ -41,11 +41,11 @@
                          <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">IELTS Reading</a>
                             <ul class="dropdown-menu">
-                                        <li><a href="click%20hoc%20reading.jsp">IELTS 6.0</a></li>
+                                        <li><a href="click%20hoc%20reading.jsp?1" onclick="readingmuc1()">IELTS 6.0</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="click%20hoc%20reading.jsp">IELTS 6.0 - 8.0</a></li>
+                                        <li><a href="click%20hoc%20reading.jsp?2">IELTS 6.0 - 8.0</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="click%20hoc%20reading.jsp">IELTS 8.0</a></li>
+                                        <li><a href="click%20hoc%20reading.jsp?3">IELTS 8.0</a></li>
                                            
                                     </ul>
                         </li>
@@ -53,11 +53,11 @@
                         <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">IELTS Listening</a>
                             <ul class="dropdown-menu">
-                                        <li><a href="click%20listenning.jsp">IELTS 6.0</a></li>
+                                        <li><a href="click%20listenning.jsp?1">IELTS 6.0</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="click%20listenning.jsp">IELTS 6.0 - 8.0</a></li>
+                                        <li><a href="click%20listenning.jsp?2">IELTS 6.0 - 8.0</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="click%20listenning.jsp">IELTS 8.0</a></li>
+                                        <li><a href="click%20listenning.jsp?3">IELTS 8.0</a></li>
                                
                             </ul>
                         </li>
@@ -66,11 +66,11 @@
                         <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">IELTS Speaking</a>
                             <ul class="dropdown-menu">
-                                        <li><a href="click%20speaking.jsp">IELTS 6.0</a></li>
+                                        <li><a href="click%20speaking.jsp?1">IELTS 6.0</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="click%20speaking.jsp">IELTS 6.0 - 8.0</a></li>
+                                        <li><a href="click%20speaking.jsp?2">IELTS 6.0 - 8.0</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="click%20speaking.jsp">IELTS 8.0</a></li>
+                                        <li><a href="click%20speaking.jsp?3">IELTS 8.0</a></li>
                                
                             </ul>
                         </li>
@@ -79,11 +79,11 @@
                        <li class="dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">IELTS Writing</a>
                             <ul class="dropdown-menu">
-                                <li><a href="click%20writing.jsp">IELTS 6.0</a></li>
+                                <li><a href="click%20writing.jsp?1">IELTS 6.0</a></li>
                                 <li class="divider"></li>
-                                <li><a href="click%20writing.jsp">IELTS 6.0 - 8.0</a></li>
+                                <li><a href="click%20writing.jsp?2">IELTS 6.0 - 8.0</a></li>
                                 <li class="divider"></li>
-                                <li><a href="click%20writing.jsp">IELTS 8.0</a></li>
+                                <li><a href="click%20writing.jsp?3">IELTS 8.0</a></li>
                             </ul>
                         </li>
                     </ul>
