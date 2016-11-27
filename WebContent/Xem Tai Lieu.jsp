@@ -45,6 +45,26 @@
          
     }
     </script>
+      <script type="text/javascript">
+		var id = $(location).attr('search').substring(1);
+  
+ 	$.get('XemNoiDungTaiLieu',{id:id},function(responseJson){
+ 	 
+		 if(responseJson!=null){
+		
+               $.each(responseJson, function(key,value) { 
+            	  
+                      document.getElementById("tieude").innerHTML = value['tieude'];
+                   
+                      document.getElementById("noidungbaihoc").innerHTML = '<iframe src="'+value['link']+'" width="100%" height="500"></iframe>';
+                    
+               });
+            } 
+	}); 
+    
+    
+    </script>
+    
 </head>
 <body style="background: url(images/background.jpg);">
 <!--
@@ -78,57 +98,12 @@
   </ol>
 <div class="panel-group" style="margin-left:10px; margin-right:10px">
     <div class="panel panel-info">
-     <div class="panel-heading"><strong><center><h2>52 Cấu Trúc Tiếng Anh Thông Dụng</h2></center></strong></div>
+     <div class="panel-heading"><strong><center><h2 id = "tieude"></h2></center></strong></div>
       <div class="panel-body">
-  
-  <br />
-  <p>
-        Đây là bài học rất hay, mem SHARE về WALL để khi nào cần thì học nhé <br/><br/>
-      .
-      • S + V+ too + adj/adv + (for someone) + to do something(quá....để cho ai làm gì...)<br/><br/>
-
-      • S + V + so + adj/ adv + that +S + V (quá... đến nỗi mà...)<br/><br/>
-
-      • It + V + such + (a/an) + N(s) + that + S +V(quá... đến nỗi mà...)<br/><br/>
-
-      • S + V + adj/ adv + enough + (for someone) + to do something. (Đủ... cho ai đó làm gì...)<br/><br/>
-
-      • Have/ get + something + done (VpII)(nhờ ai hoặc thuê ai làm gì...)<br/><br/>
-
-      • It + be + time + S + V (-ed, cột 2) / It’s +time +for someone +to do something(đã đến lúc ai đóphải làm <br/><br/>gì...)
-
-      • It + takes/took+ someone + amount of time + to do something(làm gì... mất bao nhiêu thờigian...)<br/><br/>
-
-      • To prevent/stop + someone/something + From + V-ing(ngăn cản ai/cái gì... không làm gì..)<br/><br/>
-
-      • S + find+ it+ adj to do something(thấy ... để làm gì...)<br/><br/>
-
-      • To prefer + Noun/ V-ing + to + N/ V-ing.(Thích cái gì/làm gì hơn cái gì/ làm gì)<br/><br/>
-
-      • Would rather + V¬ (infinitive) + than + V (infinitive)(thích làm gì hơn làm gì)<br/><br/>
-
-      • To be/get Used to + V-ing(quen làm gì)<br/><br/>
-
-      • Used to + V (infinitive)(Thường làm gì trong qk và bây giờ không làm nữa)<br/><br/>
-
-      • to be amazed at = to be surprised at + N/V-ing( ngạc nhiên về....)<br/><br/>
-      • to be angry at + N/V-ing(tức giận về)<br/><br/>
-      • to be good at/ bad at + N/ V-ing(giỏi về.../ kém về...)<br/><br/>
-      • to be/get tired of + N/V-ing(mệt mỏi về...)<br/><br/>
-      • can’t stand/ help/ bear/ resist + V-ing(không nhịn được làm gì...)<br/><br/>
-      • to be keen on/ to be fond of + N/V-ing(thích làm gì đó...)<br/><br/>
-      • to be interested in + N/V-ing(quan tâm đến...)<br/><br/>
-      • to waste + time/ money + V-ing(tốn tiền hoặc tg làm gì)<br/><br/>
-      • To spend + amount of time/ money + V-ing(dành bao nhiêu thời gian làm gì…)<br/><br/>
-      • To spend + amount of time/ money + on + something(dành thời gian vào việc gì...)<br/><br/>
-      • to give up + V-ing/ N(từ bỏ làm gì/ cái gì...)<br/><br/>
-      • would like/ want/wish + to do something(thích làm gì...)<br/><br/>
-      • have + (something) to + Verb(có cái gì đó để làm)<br/><br/>
-      • It + be + something/ someone + that/ who(chính...mà...)<br/><br/>
-      • Had better + V(infinitive)(nên làm gì....)<br/><br/>
-    </p>
-    <br />
-    <br />
+  		<p id = "noidungbaihoc">
+    		
+    	</p>
+    	
     <center><button class="btn btn-info btn-lg"><span class="glyphicon glyphicon-save"> Download</span></button></center>
     </div>
       </div>

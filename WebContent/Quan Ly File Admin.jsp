@@ -14,6 +14,31 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <link href="fonts/glyphicons-halflings-regular.woff" rel="fonts">
+  
+  	 <script type="text/javascript">
+      						 	function upfile(){
+      						 		var tieude = $('#tieude').val();
+      						 		if(tieude == ""){
+      						 			alert("Nhập tiêu đề ");
+      						 			return;
+      						 		}
+      						 		var lk = $('#nhaptuurl').val();
+      						 		if(lk == ""){
+      						 			alert("Nhập vào URL !");
+      						 			return;
+      						 		}
+      						 		var mota = $('#mota').val();
+      						 	   $.get('UpTaiLieu',{tieude:tieude,link:lk,mota:mota},function(responseText){
+      					        	  $('#'+responseText+'').modal('show');
+      					        	  if(responseText == "uploadfile"){
+      					        		document.getElementById("tieude").value = "";
+      					        		document.getElementById("nhaptuurl").value = "";
+      					        	  }
+      					         	 return;
+      					         }); 
+      						 		
+      						 	};
+      						 </script>
 </head>
 <body>
 <div class="panel-group">
@@ -68,119 +93,33 @@
 
               <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
-              <table class="table table-bordered">
-                    <thead><br/>
-                      <tr>
-                        <th>Title</th>
-                        
-                        <th>Type</th>
-                        <th>Size</th>
-                        <th>Date Published</th>
-                        <th>Delete</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><form>
-                    
-                      <label><a id="f1" href="#">EBook</a></label>
-                    </div></form></td>
-                        <td><p id="type1">PDF</p> </td>
-                        <td><p id="size1">3.5 Mb</p></td>
-                        <td><p id="ngay1">08/09/2016</p></td>
-                        <td><a id="link1" href ="#"><span class="glyphicon glyphicon-remove"></span></a></td>
-                      </tr>
-                      <tr>
-                        <td><form>
-                    
-                      <label><a id="f2"href="#">Started Ielts</a></label>
-                    </div></form></td>
-                        <td><p id="type2">PDF</p> </td>
-                        <td><p id="size2">8.5 Mb</p></td>
-                        <td><p id="ngay2">15/01/2016</p></td>
-                         <td><a id="link2" href ="#"><span class="glyphicon glyphicon-remove"></span></a></td>
-                      </tr>
-                      <tr>
-                        <td><form>
-                    
-                      <label><a id="f3" href="#">LongMan Ielts </a></label>
-                    </div></form></td>
-                        <td><p id="type3">PDF</p> </td>
-                        <td><p id="size3">567Kb</p></td>
-                        <td><p id="ngay3">28/07/2016</p></td>
-                         <td><a id="link3" href ="#"><span class="glyphicon glyphicon-remove"></span></a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                   <center><button class="btn btn-primary" onclick="laydanhsachFile(1)">1</button>
-                      <button class="btn btn-primary" onclick="laydanhsachFile(2)">2</button>
-                      <button class="btn btn-primary">></button>
-
-                      <script type="text/javascript">
-                      function laydanhsachFile(trang){
-                        var xhr = new XMLHttpRequest();
-                        xhr.onreadystatechange = function(){
-                          if(xhr.readyState ===4 && xhr.status===200){
-                            var items = JSON.parse(xhr.responseText);
-                      
-                            var trangkt = trang * 3 -1;
-                            var trangbd = trangkt-2;
-                             var y = 0;
-                            for(var index=0;index<items.length;index++){
-                               
-                              if(index >= trangbd && index<= trangkt)
-                              {
-                                y= y+1;
-                                if(y==1){
-                                document.getElementById("f1").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay1").innerHTML = items[index].ngay;
-                                document.getElementById("link1").href = items[index].linkbai;
-                                document.getElementById("type1").innerHTML = items[index].type;
-                                document.getElementById("size1").innerHTML = items[index].size;
-                                
-                                }
-                                if(y==2){
-                                   document.getElementById("f2").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay2").innerHTML = items[index].ngay;
-                                document.getElementById("link2").href = items[index].linkbai;
-                                document.getElementById("type2").innerHTML = items[index].type;
-                                document.getElementById("size2").innerHTML = items[index].size;
-                                }
-                                if(y==3){
-                                 document.getElementById("f3").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay3").innerHTML = items[index].ngay;
-                                document.getElementById("link3").href = items[index].linkbai;
-                                document.getElementById("type3").innerHTML = items[index].type;
-                                document.getElementById("size3").innerHTML = items[index].size;
-                                }
-                               
-                              }
-                            }
-                         
-                          }
-                        }
-                        xhr.open("GET","adminquanlyfile.json","true");
-                        xhr.send();
-
-                      }
-                      </script>
-                    </center>
+        
                 </div>
                 
                 <div id="menu2" class="tab-pane fade">
                     <form role="form">
+                      <div class="form-group">
+                        <br/>
+                      <label for="nhaptuurl">Tiêu đề</label>
+                      <input type="url" class="form-control" id="tieude" name ="tieude" placeholder="Nhập tiêu đề mô tả">
+                    </div>
+                    
+                     <div class="form-group">
+                        <br/>
+                      <label for="nhaptuurl">Mô tả</label>
+                      <textarea type="url" class="form-control" id="mota" name ="mota" row = "8"></textarea>
+                    </div>
+                    
+                    
                     <div class="form-group">
                         <br/>
                       <label for="nhaptuurl">Nhập từ URL</label>
-                      <input type="url" class="form-control" id="nhaptuurl" placeholder="Enter url here">
+                      <input type="url" class="form-control" id="nhaptuurl" name = "nhaptuurl" placeholder="Enter url here">
                     </div>
                     
-                    <div class="form-group">
-                      <label for="upfile">Upload từ máy tính</label>
-                      <input type="file" id="upfile">
-                    </div>
+                   
                      <br/>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadfile">Upload</button>
+                  <button type="button" class="btn btn-primary" onclick="upfile()">Upload</button>
                   <div class="modal fade" id="uploadfile" role="dialog">
                      <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -197,6 +136,9 @@
                 </div>
               </div>
             </div>
+            
+            
+            
                 </div>
 
                
@@ -205,7 +147,21 @@
 
 
                 </div>
-
+  <div class="modal fade" id="thatbai" role="dialog">
+                     <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                
+                  <div class="modal-body">
+                   
+                        <strong>Thất bại </strong>
+                   
+                  </div>
+                  <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+                </div>
+              </div>
+            </div>
 
 
 

@@ -13,6 +13,7 @@
   <link href="css/bootstrap.css" rel="stylesheet">
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+    <script src="editor/ckeditor.js"></script>
   <link href="fonts/glyphicons-halflings-regular.woff" rel="fonts">
 </head>
 <body>
@@ -31,7 +32,7 @@
      
           <img src="admin.png" class="img-circle" align="left" width="100" height="100" /><strong>Xin chào Admin</strong><br>
         <br />
-          <a href="111.jsp"><u><strong>Đăng xuất</strong></u></a>
+          <a href="LogoutServlet"><u><strong>Đăng xuất</strong></u></a>
     <table class="table table-hover">
     <tbody>
      
@@ -59,110 +60,203 @@
           <div class="panel panel-info">
           <div class="panel-heading"><strong><center><h4>Quản Lý Bài Viết</h4></center></strong></div>
              <div class="panel-body">
+   <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home"><strong>Tất cả bài vết</strong></a></li>
+               
+                <li><a data-toggle="tab" href="#menu2"><strong>Thêm bài viết mới</strong></a></li>
+              </ul>
 
-              <div class="btn-group btn-group-justified" role="group" aria-label="...">
-				  <div class="btn-group" role="group">
-				    <a href="Trang Quan Ly Admin.jsp"><button type="button" class="btn btn-primary">All File</button></a>
-				  </div>
-				  <div class="btn-group" role="group">
-				    <a href="Edit bai viet.jsp"><button type="button" class="btn btn-info">Edit</button></a>
-				  </div>
-				  <div class="btn-group" role="group">
-				    <a href="Them Bai Viet Moi.jsp"><button type="button" class="btn btn-primary">Add New</button></a>
-				  </div>
-				</div>
-
-				<table class="table table-bordered">
-				    <thead><br/>
-				      <tr>
-				        <th>Title</th>
-				        <th>Catelogy</th>
-				        <th>Date Published</th>
-				        <th>Delete</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr>
-				        <td><form>
-				    <div class="checkbox">
-				      <label><input  type="checkbox" value=""><p id="ten1">Unit 55: Thành ngữ về thời gian</p></label>
-				    </div></form></td>
-				        <td><p id="c1">Reading 6.0</p></td>
-				        <td><p id="ngay1">08/09/2016</p></td>
-				        <td><a id="link1" href="#"><span class="glyphicon glyphicon-remove"></span></a></td>
-				      </tr>
-				      <tr>
-				        <td><form>
-				    <div class="checkbox">
-				      <label><input  type="checkbox" value="">
-								<p id="ten2">Unit 13: Chiến thuật nghe tranh có nhiều nhân vật - Picture</p></label>
-				    </div></form></td>
-				    <td><p id="c2">Speaking 6.0 - 8.0</p></td>
-				        <td><p id="ngay2">15/01/2016</p></td>
-				        <td><a id="link2" href="#"><span class="glyphicon glyphicon-remove"></span></a></td>
-				      </tr>
-				      <tr>
-				        <td><form>
-				    <div class="checkbox">
-				      <label><input type="checkbox" value=""><p id="ten3" >Unit 10: Bài đối thoại liên quan đến du lịch, giải trí - Short Conversation </p></p></label>
-				    </div></form></td>
-				    <td><p id="c3">Speaking 6.0 - 8.0</p></td>
-				    <td><p id="ngay3">28/07/2016</p></td>
-				        <td><a id="link3" href="#"><span class="glyphicon glyphicon-remove"></span></a></td>
-				      </tr>
-				    </tbody>
-				  </table>
-				  <br/>
-				  <center><button class="btn btn-primary" onclick="laydanhsachBaiViet(1)">1</button>
-				  <button class="btn btn-primary" onclick="laydanhsachBaiViet(2)">2</button>
-				  <button class="btn btn-primary">></button></center>
-				  <script type="text/javascript">
-                      function laydanhsachBaiViet(trang){
-                        var xhr = new XMLHttpRequest();
-                        xhr.onreadystatechange = function(){
-                          if(xhr.readyState ===4 && xhr.status===200){
-                            var items = JSON.parse(xhr.responseText);
-                      
-                            var trangkt = trang * 3 -1;
-                            var trangbd = trangkt-2;
-                             var y = 0;
-                            for(var index=0;index<items.length;index++){
-                               
-                              if(index >= trangbd && index<= trangkt)
-                              {
-                                y= y+1;
-                                if(y==1){
-                                document.getElementById("ten1").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay1").innerHTML = items[index].ngay;
-                                document.getElementById("link1").href = items[index].linkbai;
-                                document.getElementById("c1").innerHTML = items[index].Catelogy;
-                                
-                                }
-                                if(y==2){
-                                   document.getElementById("ten2").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay2").innerHTML = items[index].ngay;
-                                document.getElementById("link2").href = items[index].linkbai;
-                                document.getElementById("c2").innerHTML = items[index].Catelogy;
-                                }
-                                if(y==3){
-                                 document.getElementById("ten3").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay3").innerHTML = items[index].ngay;
-                                document.getElementById("link3").href = items[index].linkbai;
-                                document.getElementById("c3").innerHTML = items[index].Catelogy;
-                                }
-                               
-                              }
-                            }
-                         
-                          }
-                        }
-                        xhr.open("GET","adminquanlybaiviet.json","true");
-                        xhr.send();
-
-                      }
-                      </script>
+              <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+          <div id ="bangdanhsach">
+                  <table cellspacing="0" id="tblDanhSach" class="table table-bordered">
+						<tr>
+							<th scope="col">Tiêu đề</th>
+							<th scope="col" width = "150">Ngày viết</th>
+							<th scope="col" width = "100">Delete</th>
+						</tr>
+					</table>
+                  </div>
+                  <center>
+                  <span> Chuyển tới trang :  <input type ="number" name="page" id ="page" style ="width:50px">
+                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
+   				
                   </center>
+                  
+                  
+                </div>
+                
+                <div id="menu2" class="tab-pane fade">
+                	<div class = "col col-sm-8">
+                	<br />
+                		<form role="form">
+						  <div class="form-group">
+						    <label for="tieude">Tiêu đề</label>
+						    <input type="text" class="form-control" id="tieude" name = "tieude" placeholder="Nhập tiêu đề">
+						  </div>
+						  <div class="form-group">
+						    <label for="noidung">Nội dung</label>
+						    <textarea type="text" class="form-control" id="noidung" name="noidung" placeholder="Nội dung" rows="10"> </textarea>
+						  </div>
+						 
+						  <button type="button" class="btn btn-default" onclick = "themBaiMoi()">Thêm bài viết mới</button>
+						</form>
+						<center>
+                 
+                 
+						 <script>
+           						CKEDITOR.replace( 'noidung' );
+      						 </script>    
+      						 <script type="text/javascript">
+      						 	function themBaiMoi(){
+      						 		var td = $('#tieude').val();
+      						 		var nd = CKEDITOR.instances.noidung.getData();
+      						 		if(td == ""){
+      						 			alert("Tiêu đề không hợp lệ !");
+      						 			return;
+      						 		}
+      						 		if(nd == ""){
+      						 			alert("Nội dung không hợp lệ  !");
+      						 			return;
+      						 		}
+      						 		var chuyenmuc = "";
+      						 		if(document.getElementById("optionsRadios1").checked == true){
+      						 			chuyenmuc = "Reading";
+      						 		}
+      						 		if(document.getElementById("optionsRadios2").checked == true){
+      						 			chuyenmuc = "Listening";
+      						 		}
+      						 		if(document.getElementById("optionsRadios3").checked == true){
+      						 			chuyenmuc = "Speaking";
+      						 		}
+      						 		if(document.getElementById("optionsRadios4").checked == true){
+      						 			chuyenmuc = "Writing";
+      						 		}
+      						 		
+      						 		var muc = "";
+      						 		if(document.getElementById("optionsRadios11").checked == true){
+      						 			muc = "1";
+      						 		}
+      						 		if(document.getElementById("optionsRadios22").checked == true){
+      						 			muc = "2";
+      						 		}
+      						 		if(document.getElementById("optionsRadios33").checked == true){
+      						 			muc = "3";
+      						 			
+      						 		}
+      						 	   $.get('ThemBaiVietMoi',{tieude:td,noidung:nd,chuyenmuc:chuyenmuc,muc:muc},function(responseText){
+      					        	  $('#'+responseText+'').modal('show');
+      					        	  if(responseText == "themthanhcong"){
+      					        		  document.getElementById("tieude").value = "";
+      					        		CKEDITOR.instances['noidung'].setData("");
+      					        	  }
+      					         	 return;
+      					         }); 
+      						 		
+      						 	};
+      						 </script>
+                	</div>
+                	  <div class="modal fade" id="themthanhcong" role="dialog">
+			    <div class="modal-dialog">
+			     
+			      <div class="modal-content">
+			       <div class="modal-header">
+				       <button type="button" class="close" data-dismiss="modal">&times;</button>
+				      </div>
+			        <div class="modal-body">
+			          <p>Thêm bài viết thành công !.</p>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+			    <div class="modal fade" id="themthatbai" role="dialog">
+			    <div class="modal-dialog">
+			     
+			      <div class="modal-content">
+			       <div class="modal-header">
+				       <button type="button" class="close" data-dismiss="modal">&times;</button>
+				      </div>
+			        <div class="modal-body">
+			          <p>Thêm bài viết thất bại !.</p>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+                	<div class = "col col-sm-4">
+                	<br /><br />
+                	<div class="panel-group">
+    		<div class="panel panel-info">
+    			 <div class="panel-heading"><strong><center><h4>Chọn Danh Mục</h4></center></strong></div>
+      			<div class="panel-body">
+      			<p>Mục</p>
+      				<form>
+					    <div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+							    Reading
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+							    Listening
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option1" checked>
+							    Speaking
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios4" value="option2">
+							    Writing
+							  </label>
+							</div>
+				  </form>
+				
+				
+				<p>Cấp độ</p>
+      				<form>
+					    <div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios11" value="option1" checked>
+							    < 6.0
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios22" value="option2">
+							    6.0 - 8.0
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios33" value="option1" checked>
+							    > 8.0
+							  </label>
+							</div>
+						
+				  </form>
+				  
+      			</div>
+      			</div>
+      			</div>
+                	</div>
+                </div>
 
+               
+              </div>
+              
 
               </div>
             </div>
