@@ -45,6 +45,41 @@
          
     }
     </script>
+    
+    <script type="text/javascript">
+   $(document).ready(function(){
+	  document.getElementById("page").value = 1;
+	   var page = $('#page').val();
+	   var muc = $(location).attr('search').substring(1);
+	   var chuyenmuc = "Reading";
+	   
+	   ds(page,muc,chuyenmuc);
+		
+   })
+  function ds(page,muc,chuyenmuc){
+		
+		  $.get('DanhSachBaiHocServlet',{chuyenmuc:chuyenmuc,muc:muc},function(responseJson){
+			 if(responseJson!=null){
+       	 /*   $("#tblDanhSach").find("tr:gt(0)").remove(); */
+       	   var table1 = $("#danhsach");
+	               $.each(responseJson, function(key,value) { 
+	               		 
+	            	   var div = document.createElement('div');
+
+	            	    div.className = 'row';
+
+	            	    div.innerHTML = '<img id ="anh2" src="images/unit22.jpg" class="img-circle" align="left" width="50" height="50"/>'+
+	            	          '<a id ="link2" href="hoc%20reading.jsp?'+value['ID']+'"><p id="bai2">'+value['tieude']+'</p></a><br>'
+
+	            	     document.getElementById('danhsach').appendChild(div);
+	            	    div.innerHTML = div.innerHTML + '<hr>';
+	            	    
+	               });
+           }
+		}); 
+   }
+   </script>
+   
 </head>
 <body style="background: url(images/background.jpg);">
 
@@ -66,35 +101,22 @@
 
 
 <!--sdfsdf-->
-       <ol class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">IELTS Online</a></li>
-  <li><a href="#">READING</a></li>
-<li><a href="#">IELTS 6.0 - 8.0</a></li>
-    </ol>
-    <div class="container">
-      <div class="row">
-        <img id ="anh1" src="images/unit21read.jpg" class="img-circle" align="left" width="100" height="100"/>
-         <a id ="link1" href="hoc reading.jsp"><p id="bai1">Unit 38. Cụm từ phổ biến với "under" và "over"</p></a>
-<br>
+<center>
+ <div class="alert alert-success">
+                       <strong>Chọn bài học READING</strong>  
+                    </div>
+                    </center> 
+    <div class="container" id = "danhsach" name = "danhsach">
+    
       </div>
-       <hr>
-       <div class="row">
-        <img id ="anh2" src="images/unit22.jpg" class="img-circle" align="left" width="100" height="100"/>
-          <a id ="link2" href="#"><p id="bai2">Unit 21: Kỹ năng nghe loại câu hỏi xác định người (People Identifying) - Phần Short Conversation</p></a><br>
-      </div>
-       <hr>
-       <div class="row">
-        <img id ="anh3" src="55.jpg" class="img-circle" align="left" width="100" height="100"/>
-          <a id ="link3" href=""><p id="bai3">Unit 21: Kỹ năng nghe loại câu hỏi xác định người (People Identifying) - Phần Short Conversation</p></a><br>
-      </div>
-      <br />
-      <button class="btn btn-primary" onclick="laydanhsach(1)">1</button>
-    <button class="btn btn-primary" onclick="laydanhsach(2)">2</button>
-     <button class="btn btn-primary" onclick="laydanhsach(3)">3</button>
-    <button class="btn btn-primary">Next &rarr;</button>
+   <center>
+                 
+                 <span> Chuyển tới trang :  <input type ="number" name="page" id ="page" style ="width:50px">
+                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
+   				
+                  </center>
  
-    </div>
+    
 <!--sdfsdfsdf-->   
 <br/>
 <hr>

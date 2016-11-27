@@ -45,7 +45,42 @@
          
     }
     </script>
+    
+        <script type="text/javascript">
+   $(document).ready(function(){
+	  document.getElementById("page").value = 1;
+	   var page = $('#page').val();
+	   var muc = $(location).attr('search').substring(1);
+	   var chuyenmuc = "Listening";
+	   
+	   ds(page,muc,chuyenmuc);
+		
+   })
+  function ds(page,muc,chuyenmuc){
+		
+		  $.get('DanhSachBaiHocServlet',{chuyenmuc:chuyenmuc,muc:muc},function(responseJson){
+			 if(responseJson!=null){
+       
+       	   //var table1 = $("#danhsach");
+	               $.each(responseJson, function(key,value) { 
+	               		 
+	            	   var div = document.createElement('div');
+
+	            	    div.className = 'row';
+
+	            	    div.innerHTML = '<img id ="anh2" src="images/unit22.jpg" class="img-circle" align="left" width="50" height="50"/>'+
+	            	          '<a id ="link2" href="hoc%20listening.jsp?'+value['ID']+'"><p id="bai2">'+value['tieude']+'</p></a><br>'
+
+	            	     document.getElementById('danhsach').appendChild(div);
+	            	    div.innerHTML = div.innerHTML + '<hr>';
+	            	    
+	               });
+           }
+		}); 
+   }
+   </script>
 </head>
+
 <body style="background: url(images/background.jpg);">
 
 <div class="container" style="background-color: white; ">
@@ -68,74 +103,25 @@
     <li><a href="#">Home</a></li>
     <li><a href="#">IELTS Online</a></li>
   <li><a href="#">LISTENING</a></li>
-<li><a href="#">IELTS 6.0</a></li>
+
     </ol>
-    <div class="container">
     
-      <div class="row">
-
-        <a  href="hoc listening.jsp"><img id="anh1" src="images/Desert.jpg" align="left" width="100" height="100" class="img-circle"/>
-         <p id="bai1">Unit 21: Kỹ năng nghe loại câu hỏi xác định người (People Identifying) - Phần Short Conversation</p><br></a>
+    <center>
+ <div class="alert alert-success">
+                       <strong>Chọn bài học READING</strong>  
+                    </div>
+                    </center> 
+                    
+    <div class="container" id = "danhsach" name = "danhsach">
+    
       </div>
-       <hr>
-       <div class="row">
-        <img id="anh2" src="images/Desert.jpg" align="left" width="100" height="100" class="img-circle"/>
-        <a id="bai2" href="#">Unit 21: Kỹ năng nghe loại câu hỏi xác định người (People Identifying) - Phần Short Conversation  </a><br>
-      </div>
-       <hr>
-       <div class="row">
-        <img id="anh3" src="images/Desert.jpg" align="left" width="100" height="100" class="img-circle"/>
-        <a id="bai3" href="#">  Unit 21: Kỹ năng nghe loại câu hỏi xác định người (People Identifying) - Phần Short Conversation </a><br>
-      </div>
-      <br />
-      <button class="btn btn-primary" onclick="laydanhsach(1)">1</button>
-    <button class="btn btn-primary" onclick="laydanhsach(2)">2</button>
-    <button class="btn btn-primary" >Next &rarr;</button>
-    <script type="text/javascript">
-
-      function laydanhsach(trang){
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function(){
-          if(xhr.readyState ===4 && xhr.status===200){
-            var items = JSON.parse(xhr.responseText);
-           // var output = "<ul>";
-            var trangkt = trang * 3 -1;
-            var trangbd = trangkt-2;
-             var y = 0;
-            for(var index=0;index<items.length;index++){
-               
-              if(index >= trangbd && index<= trangkt)
-              {
-                y= y+1;
-                if(y==1){
-                document.getElementById("anh1").src = items[index].linkanh;
-                document.getElementById("bai1").innerHTML = items[index].tenbai;
-                }
-                if(y==2){
-                  document.getElementById("anh2").src = items[index].linkanh;
-                document.getElementById("bai2").innerHTML = items[index].tenbai;
-                }
-                if(y==3){
-                  document.getElementById("anh3").src = items[index].linkanh;
-                document.getElementById("bai3").innerHTML = items[index].tenbai;
-      
-                }
-                //output += "<li>" + items[index].tenbai;4
-                
-              }
-            }
-           // output += "</ul>";
-            //document.getElementById("rs").innerHTML = output;
-          }
-        }
-        xhr.open("GET","clickListening.json","true");
-        xhr.send();
-
-      }
-      </script>
-
-    </div>
- 
+       <center>
+                 
+                 <span> Chuyển tới trang :  <input type ="number" name="page" id ="page" style ="width:50px">
+                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
+   				
+                  </center>
+  
 <!--sdfsdfsdf-->   
 <br/>
 <hr>

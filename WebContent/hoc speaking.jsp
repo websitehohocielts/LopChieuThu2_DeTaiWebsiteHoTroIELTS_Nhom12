@@ -46,6 +46,23 @@
          
     }
     </script>
+     <script type="text/javascript">
+		var id = $(location).attr('search').substring(1);
+  
+ 	$.get('ThongTinBaiHoc',{id:id},function(responseJson){
+		 if(responseJson!=null){
+               $.each(responseJson, function(key,value) { 
+            	  
+                      document.getElementById("tieude").innerHTML = value['tieude'];
+                   
+                      document.getElementById("noidungbaihoc").innerHTML = value['noidung'];
+                    
+               });
+            } 
+	}); 
+    
+    
+    </script>
 </head>
 <body style="background: url(images/background.jpg);">
 
@@ -69,50 +86,15 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">IELTS ONLINE</a></li>
         <li><a href="#">SPEAKING</a></li>
-    <li><a href="#">IELTS 6.0 - 8.0</a>
+    
     </ol>
 <div class="panel-group" style="margin-left:10px; margin-right:10px">
     <div class="panel panel-info">
-     <div class="panel-heading"><strong><center><h2>Unit 3: 6 quy tắc "vàng" để đọc đúng trọng âm của từ</h2></center></strong></div>
+     <div class="panel-heading"><strong><center><h2 id = "tieude"></h2></center></strong></div>
       <div class="panel-body">
-    
-    <br />
-    <p><strong>1. Trọng âm rơi vào gốc từ  </strong></p><br/>
-             <p class="text justify"> 
-                    Trong tiếng Anh, khá nhiều từ được tạo thành bằng cách ghép một gốc từ với hậu tố hoặc tiền tố. Trong những trường hợp đó, trọng âm thường rơi vào gốc từ. Điều đó đồng nghĩa với việc khi ta thêm hậu tố hoặc tiền tố vào một từ, trọng âm của từ đó sẽ không thay đổi. <br/>
-                    Ví dụ: ‘comfortable - un’comfortable em'ploy - em'ployment ‘popular - un’popular Ngoại lệ: ‘undergrowth - ‘underground </p>
- 
-                    <p><b>2. Trọng âm rơi vào trước những từ tận cùng bằng:  </b></p><br/>
-                <p class="text justify">
-            ‘tion’: pre’vention, ‘nation <br/>
-            ‘sion’: in’vasion, dis’cussion <br/>
-            ‘ic’: po’etic, eco’nomic <br/>
-            ‘ical’: ‘logical, eco’nomical <br/>
-            ‘ance’: im’portance, ‘distance <br/>
-            ‘ious’: in’dustrious, vic’torious <br/>
-
-            Đồng thời, những từ tận cùng bằng ‘ive’, ‘ous’, ‘cial’, ‘ory’,… thì trọng âm cũng rơi vào trước nó. <br/>
-
-            Trường hợp ngoại lệ: ‘politic, ‘lunatic, a’rithmetic
-             </p>
-             <center>
-             <img src="14.jpg"></center>
-             <p>
-            Ví dụu</p>
-            <p>
-            Who are the speakers?<br/>
-            What is his job?<br/>
-            Who is the man talking to?<br/>
-            What type of company does the speakers most likely work for?<br/>
-            What type of business does the man have?<br/>
-
-            Ví dụu<br/>
-            Occupation                                            Associated words
-            Cook                                                   kitchen, knife, spoon
-            Waiter                                                 order, tip, customers
-            
-            </p>
-            <br/>
+    				<p id = "noidungbaihoc">
+    	
+    	</p>
             </div>
             </div>
             </div>

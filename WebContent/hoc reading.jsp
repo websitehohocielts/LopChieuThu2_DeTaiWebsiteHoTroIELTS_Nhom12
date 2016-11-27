@@ -45,6 +45,23 @@
          
     }
     </script>
+    <script type="text/javascript">
+		var id = $(location).attr('search').substring(1);
+  
+ 	$.get('ThongTinBaiHoc',{id:id},function(responseJson){
+		 if(responseJson!=null){
+               $.each(responseJson, function(key,value) { 
+            	  
+                      document.getElementById("tieude").innerHTML = value['tieude'];
+                   
+                      document.getElementById("noidungbaihoc").innerHTML = value['noidung'];
+                    
+               });
+            } 
+	}); 
+    
+    
+    </script>
 </head>
 <body style="background: url(images/background.jpg);">
 <!--
@@ -75,53 +92,15 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">IELTS ONLINE</a></li>
         <li><a href="#">READING</a></li>
-    <li><a href="#">READING 6.0 - 8.0</a>
+  
     </ol>
 <div class="panel-group" style="margin-left:10px; margin-right:10px">
     <div class="panel panel-info">
-     <div class="panel-heading"><strong><center><h2>Unit 38: Cụm từ phổ biến với "under" và "over"</h2></center></strong></div>
+     <div class="panel-heading"><strong><center><h2 id = "tieude"></h2></center></strong></div>
       <div class="panel-body">
-    
-    <br />
-    <p><strong>UNDER </strong></p><br/>
-             <p class="text justify"> 
-                    * Go under: Thất bại về tài chính (việc làm ăn hoặc công ty)<br/>
-                    - The business went under and they lost everything.<br/>
-                    Việc làm ăn thất bại và họ mất tất cả.<br/>
-                    - If the economy continues on this downward trend, thousands of companies will go under.
-                    Nếu nền kinh tế tiếp tục theo hướng đi xuống, ngàn hàng công ty sẽ phá sản.</p>
-
-          <p class="text justify"> 
-          * Go under: Mất sự tĩnh táo khi bạn được tiêm thuốc mê<br/>
-          - She <strong>went under</strong> as soon as she was given the anesthetic for the operation.<br/>
-          <i>Cô ta bị mê sau khi được tiêm thuốc mê trong cuộc giải phẩu.</i><br/>
-          - The dentist gave me a jab and I <strong>went under</strong>.
-          Nha sĩ tiêm thuốc cho tôi và tôi bị mê.</p>
- 
-                    <p><b>OVER </b></p><br/>
-          <p class="text justify">
-        * Talk it over: Thảo luận về việc gì đó Helen’s mum said she’d talk it <strong>over</strong> with Helen’s dad.<br />
-        Mẹ của Helen nói rằng bà ta muốn nói bàn bạc với ba của Helen.<br />
-        Don’t just walk out! Let’s talk it <strong>over</strong> first.<br />
-         (Đừng bỏ đi! Hãy bàn bạc lại.)
-                     </p>
-            
-      <p class="text justify">
-        <strong>* Hand something over/Hand over something:</strong> Đưa cái gì đó cho ai<br/>
-        - You need to <strong>hand over your passport</strong> when you talk to the immigration officer.<br/>
-        Bạn cần trình hộ chiếu của bạn khi bạn nói chuyện với nhân viên xuất nhập cảnh.</br>
-        - The robbers told us to <b>hand over our wallets, purses and jewellery.</b><br />
-        Những tên cướp bảo chúng tôi nộp ví, giỏ xách và tư trang.
-
-      </p>
-      <p class="text justify">
-        <b>* Chew something over / Chew over something:</b> Suy nghĩ về việc gì đó một cách cẩn thận hoặc bàn bạc nó với người khác trước khi quyết định làm cái gì<br />
-        - Let me <b>chew it over</b> first. I’ll let you know my decision tomorrow.<br />
-        Hãy để tôi suy nghĩ lại. Tôi sẽ báo cho chị biết quyết định vào ngày mai.<br/>
-        - You should <b>chew over what he said</b>. He had some really good ideas in the meeting.<br/>
-        Bạn nên suy nghĩ về cái ông ta vừa nó. Ông ta thật sự có những ý kiến hay trong cuộc họp.<br />
-
-      </p>
+    	<p id = "noidungbaihoc">
+    	
+    	</p>
         
       </div>
       </div>

@@ -45,6 +45,23 @@
          
     }
     </script>
+    <script type="text/javascript">
+		var id = $(location).attr('search').substring(1);
+  
+ 	$.get('ThongTinBaiHoc',{id:id},function(responseJson){
+		 if(responseJson!=null){
+               $.each(responseJson, function(key,value) { 
+            	  
+                      document.getElementById("tieude").innerHTML = value['tieude'];
+                   
+                      document.getElementById("noidungbaihoc").innerHTML = value['noidung'];
+                    
+               });
+            } 
+	}); 
+    
+    
+    </script>
 </head>
 <body style="background: url(images/background.jpg);">
 
@@ -68,50 +85,23 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">IELTS ONLINE</a></li>
         <li><a href="#">WRITING</a></li>
-    <li><a href="#">IELTS 8.0</a>
+   
     </ol>
 <div class="panel-group" style="margin-left:10px; margin-right:10px">
     <div class="panel panel-info">
-     <div class="panel-heading"><strong><center><h2><h2>Unit 3: Từ trọng tâm - Giới từ trong mô tả tranh phần IELTS Writing</h2></h2></center></strong></div>
+     <div class="panel-heading"><strong><center><h2 id = "tieude"></h2></center></strong></div>
       <div class="panel-body">
-    
-    <br />
-    <br/>
-    <p class="text justify">
-        Giới từ là từ loại được sử dụng thường xuyên trong câu, nhưng không phải người học Tiếng Anh nào cũng biết cách sử dụng một cách chính xác. Sau đây, Ms Hoa Toeic tiếp tục chia sẻ về vai trò cũng như cách sử dụng chính xác giới từ trong phần 1- Miêu tả tranh, đề thi Toeic Writing - TOEIC Writing Test.
-    </p>
-
-            <div class="row">
-                <div class="col-sm-6">
-                     <p class="text justify">
-                        <p><strong>1. Vai trò của giới từ trong câu</strong></p><br/>
-                     
-                        <span style="color: red"> + Giới từ + noun</span><br/>
-                        <center><img src="b.jpg"></center>
-                        <p class="text justify">
-                            Chair/ around &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     : There are 4 chairs around the table.<br/>
-                            Vase/ on: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp         : There is a vase on the table
-                        </p>
-                     </p>
-                </div>
-                <div class="col-sm-6">
-                     <p class="text justify">
-                        <p><strong>2. Sự biến đổi hình thái của giới từ phần mô tả tranh TOEIC Writing</strong></p><br/>
-                        <p class="text justify">
-                            Giới từ không có sự biến đổi hình thái. Tuy vậy, bạn cần lưu ý đến các giới từ được tạo thành từ hai từ trở lên để diễn đạt một ý nào đó: next to, instead of, because of, in front of…
-                        </p>
-                        <center><img src="111.jpg"></center>
-                        <p class="text justify">
-                            <strong>Next to/ woman:The man is sitting next to the woman.</strong>
-                        </p>
-                     </p>
+    <p id = "noidungbaihoc">
+    	
+    	</p>
+        
                 </div>
               </div>
               <br/><br/>
              
               </div>
-              </div>
-              </div>
+             
+           
             <br />
             <p><Strong>Các bài học liên quan</Strong></p>
             <hr>
@@ -134,6 +124,7 @@
                 </div>
             </div>
  <hr>
+
 <!--sdfsdfsdf-->   
 
     <%@ include file="footer.jsp" %>

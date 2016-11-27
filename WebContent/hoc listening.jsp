@@ -45,6 +45,24 @@
          
     }
     </script>
+    
+    <script type="text/javascript">
+		var id = $(location).attr('search').substring(1);
+  
+ 	$.get('ThongTinBaiHoc',{id:id},function(responseJson){
+		 if(responseJson!=null){
+               $.each(responseJson, function(key,value) { 
+            	  
+                      document.getElementById("tieude").innerHTML = value['tieude'];
+                   
+                      document.getElementById("noidungbaihoc").innerHTML = value['noidung'];
+                    
+               });
+            } 
+	}); 
+    
+    
+    </script>
 </head>
 <body style="background: url(images/background.jpg);">
 
@@ -72,34 +90,16 @@
     </ol>
 <div class="panel-group" style="margin-left:10px; margin-right:10px">
     <div class="panel panel-info">
-     <div class="panel-heading"><strong><center><h2>Unit 21: Kỹ năng nghe loại câu hỏi xác định người (People Identifying)</h2></center></strong></div>
+     <div class="panel-heading"><strong><center><h2 id = "tieude"></h2></center></strong></div>
       <div class="panel-body">
-    
-    <br />
-    
-             <p class="text justify">Đây là dạng câu hỏi chiếm 3%-13% trong tổng số 30 câu hỏi. Hôm nay tôi tiếp tục chia sẻ một số kinh nghiệm nghe đối với loại câu hỏi Who này trong lúc học TOEIC bạn gặp phải. Câu hỏi có thể hỏi về người và nghề nghiệp của người nói.
-             </p>
-             <center>
-             <img src="111.jpg"></center>
-             <p>
-            Ví dụu</p>
-            <p>
-            Who are the speakers?<br/>
-            What is his job?<br/>
-            Who is the man talking to?<br/>
-            What type of company does the speakers most likely work for?<br/>
-            What type of business does the man have?<br/>
-
-            Ví dụu<br/>
-            Occupation                                            Associated words
-            Cook                                                   kitchen, knife, spoon
-            Waiter                                                 order, tip, customers
-            </p>
+    		<p id = "noidungbaihoc">
+    	
+    	</p>
       </div>
       </div>
       </div>
 
-            </p>
+         
             <br/>
            
             <br />
