@@ -8,6 +8,14 @@ public class TaiLieuClass {
 	private String nguoiup;
 	private int loai;
 	private boolean share;
+	private String mota;
+	
+	public String getMota() {
+		return mota;
+	}
+	public void setMota(String mota) {
+		this.mota = mota;
+	}
 	public int getId() {
 		return id;
 	}
