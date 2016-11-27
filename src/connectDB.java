@@ -162,7 +162,36 @@ public class connectDB {
 		return dinhDangThoiGian.format(thoiGian.getTime());
 
 	}
-
+	public static boolean taoBaiVietMoi(String td,String noidung,String cm,int muc){
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			
+		}
+		Connection cnn = null;
+		Statement stm = null;	
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+			
+		}
+		try {
+			Statement stm1 = (Statement) cnn.createStatement();
+			ResultSet rs = stm1.executeQuery("SELECT MAX(id) max FROM ieltsonline.baihoc");
+			int id = -1;;
+			while(rs.next()){
+				id = rs.getInt("max");
+			}
+			id = id + 1;
+			stm = (Statement) cnn.createStatement();
+			stm.executeUpdate("insert into ieltsonline.baihoc values("+id+",'"+td+"','"+noidung+"','"+cm+"',"+muc+",'"+layngay()+"')");
+			
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
 	public static ArrayList<UserClass> getListUser(int page) {
 
 		Connection cnn = null;
@@ -307,5 +336,93 @@ public class connectDB {
 
 		return userList;
 	}
+	public static ArrayList<BaiHoc> getListBaiHoc(int page,int muc,String chuyenmuc) {
 
+		Connection cnn = null;
+		Statement stm = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			stm = (Statement) cnn.createStatement();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		ArrayList<BaiHoc> BHList = new ArrayList<BaiHoc>();
+		try {
+			int pg1 = page * 10;
+			int pg2 = pg1 - 10;
+			ResultSet rs = stm.executeQuery(
+					"SELECT * FROM ieltsonline.baihoc where chuyenmuc = '"+chuyenmuc+"' and muc = "+muc+" limit "
+							+ pg2 + "," + pg1 + "");
+
+			while (rs.next()) {
+				BaiHoc bh = new BaiHoc();
+				bh.setID(rs.getInt("id"));
+				bh.setTieude(rs.getString("tieude"));
+
+				BHList.add(bh);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return BHList;
+	}
+	
+	
+public static ArrayList<BaiHoc> NoiDungBaiHoc(int id){
+		
+		Connection cnn = null;            
+        Statement stm = null;     
+       String sql = null;
+       
+       try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+       try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+       try {
+			stm = (Statement) cnn.createStatement();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+       ArrayList<BaiHoc> bh = new ArrayList<>();
+      try {
+      	
+      	ResultSet rs = stm.executeQuery("SELECT * FROM ieltsonline.baihoc where id = "+id+"");
+      
+          while(rs.next()) {
+        	  BaiHoc bhi = new BaiHoc();
+		          bhi.setID(rs.getInt("id"));
+		          bhi.setTieude(rs.getString("tieude"));
+		          bhi.setNoidung(rs.getString("noidung"));
+          bh.add(bhi);
+          }
+          
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }
+
+      return bh;
+	}
 }
