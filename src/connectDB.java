@@ -521,4 +521,300 @@ public class connectDB {
 
 		return tailieu;
 	}
+
+	public static boolean guiTinNhan(String tieude,String noidung,String usernhan,String usergui){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+		}
+		Connection cnn = null;
+		Statement stm = null;
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+
+		}
+		try {
+			Statement stm1 = (Statement) cnn.createStatement();
+			ResultSet rs = stm1.executeQuery("SELECT MAX(id) max FROM ieltsonline.tinnhan");
+			int id = -1;
+			;
+			while (rs.next()) {
+				id = rs.getInt("max");
+			}
+			
+			id = id + 1;
+			System.out.println("insert into ieltsonline.tinnhan values(" + id + ",'" + tieude + "','" + usergui
+					+ "','" + usernhan + "','" + noidung + "')");
+			stm = (Statement) cnn.createStatement();
+			stm.executeUpdate("insert into ieltsonline.tinnhan values(" + id + ",'" + tieude + "','" + usergui
+					+ "','" + usernhan + "','" + noidung + "')");
+			
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	public static ArrayList<String> dsAdmin() {
+		
+		Connection cnn = null;
+		Statement stm = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			stm = (Statement) cnn.createStatement();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		ArrayList<String> dsAD = new ArrayList<>();
+		try {
+			
+			ResultSet rs = stm.executeQuery("SELECT * FROM ieltsonline.user where roleID = 1"); // 
+
+			while (rs.next()) {
+				dsAD.add(rs.getString("username"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return dsAD;
+	}
+
+	public static ArrayList<TinNhan> DanhSachTinNhan(int page,String user) {
+
+		Connection cnn = null;
+		Statement stm = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			stm = (Statement) cnn.createStatement();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		ArrayList<TinNhan> ds = new ArrayList<>();
+		try {
+			int pg1 = page * 10;
+			int pg2 = pg1 - 10;
+			ResultSet rs = stm.executeQuery("SELECT * FROM ieltsonline.tinnhan where usergui = '"+user+"' or usernhan = '"+user+"' limit " + pg2 + "," + pg1 + ""); // 
+			while (rs.next()) {
+				TinNhan a = new TinNhan();
+				a.setId(rs.getInt("id"));
+				a.setTieude(rs.getString("tieude"));
+				a.setUsernhan(rs.getString("usernhan"));
+				ds.add(a);
+				System.out.println(a.getId() + "  "+a.getTieude());
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return ds;
+	}
+	
+	
+	public static ArrayList<TinNhan> NoiDungTinNhan(int id) {
+
+		Connection cnn = null;
+		Statement stm = null;
+		String sql = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			stm = (Statement) cnn.createStatement();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		ArrayList<TinNhan> tn = new ArrayList<>();
+		try {
+
+			ResultSet rs = stm.executeQuery("SELECT * FROM ieltsonline.tinnhan where id = " + id + "");
+
+			while (rs.next()) {
+				TinNhan a = new TinNhan();
+				a.setId(rs.getInt("id"));
+				a.setTieude(rs.getString("tieude"));
+				a.setNoidung(rs.getString("noidung"));
+				a.setUsernhan(rs.getString("usernhan"));
+				tn.add(a);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return tn;
+	}
+	
+	
+	public static ArrayList<NoiDungTraLoi> NoiDungCuocTroTruyen(int id) {
+
+		Connection cnn = null;
+		Statement stm = null;
+		String sql = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			stm = (Statement) cnn.createStatement();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		ArrayList<NoiDungTraLoi> lsttl = new ArrayList<>();
+		try {
+
+			ResultSet rs = stm.executeQuery("SELECT * FROM ieltsonline.traloi  where idtinnhan = "+id+" order by thoigian");
+
+			while (rs.next()) {
+				NoiDungTraLoi tl = new NoiDungTraLoi();
+				tl.setId(rs.getInt("id"));
+				tl.setIdtn(rs.getInt("idtinnhan"));
+				tl.setNoidungtl(rs.getString("noidungtraloi"));
+				tl.setUsergui(rs.getString("usergui"));
+				tl.setUsernhan(rs.getString("usernhan"));
+				lsttl.add(tl);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return lsttl;
+	}
+	
+	public static boolean traLoiTinNhan(int idtn,String ndtl,String usergui){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+		}
+		Connection cnn = null;
+		Statement stm = null;
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+
+		}
+		try {
+			Statement stm1 = (Statement) cnn.createStatement();
+			ResultSet rs = stm1.executeQuery("SELECT MAX(id) max FROM ieltsonline.traloi");
+			int id = -1;
+			;
+			while (rs.next()) {
+				id = rs.getInt("max");
+			}
+			id = id + 1;
+			stm = (Statement) cnn.createStatement();
+			stm.executeUpdate("insert into ieltsonline.traloi values(" + id + ","+idtn+",'" + ndtl + "','" + layngay()
+					+ "','"+usergui+"',null)");
+
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+	
+	
+	public static ArrayList<BaiViet> DanhSachBaiViet(int page) {
+
+		Connection cnn = null;
+		Statement stm = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		try {
+			stm = (Statement) cnn.createStatement();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		ArrayList<BaiViet> dsbv = new ArrayList<>();
+		try {
+			int pg1 = page * 10;
+			int pg2 = pg1 - 10;
+			ResultSet rs = stm.executeQuery("SELECT * FROM ieltsonline.baihoc limit " + pg2 + "," + pg1 + ""); // 
+			while (rs.next()) {
+			BaiViet a = new BaiViet();
+			a.setId(rs.getInt("id"));
+			a.setNgaytao(rs.getDate("ngaytao"));
+			a.setTieude(rs.getString("tieude"));
+			dsbv.add(a);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return dsbv;
+	}
+	
+
 }
+
