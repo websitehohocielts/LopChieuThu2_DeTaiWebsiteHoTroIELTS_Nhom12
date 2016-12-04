@@ -45,6 +45,29 @@
          
     }
     </script>
+    
+   <script type="text/javascript">
+   
+   $(document).ready(function(){
+		  
+		  document.getElementById("page").value = 1;
+		   var page = $('#page').val();
+			$.get('LichSuTinNhanServlet',{page:page},function(responseJson){
+				 if(responseJson!=null){
+	           	   $("#dsTinNhan").find("tr:gt(0)").remove();
+	           	   var table1 = $("#dsTinNhan");
+		               $.each(responseJson, function(key,value) { 
+		               		   var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+		               			rowNew.children().eq(0).html('<a href ="User-xem-tra-loi-tin-nhan-ho-tro.jsp?'+value['id']+'" >'+value['tieude']+' </a>');
+		                       rowNew.children().eq(1).text(value['usernhan']); 
+		                       rowNew.children().eq(2).html('<span class="glyphicon glyphicon-remove" id ='+value['id']+'></span>'); 
+		                       rowNew.appendTo(table1);
+		               });
+	               }
+			});
+		   
+	   })
+   </script>
 </head>
 <body style="background: url(images/background.jpg);">
 <!--
@@ -82,49 +105,20 @@
 
       <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
-              <table class="table table-bordered">
-                    <thead><br/>
-                      <tr>
-                        <th>Title</th>
-                        <th>Date</th>
-                        <th>Delete</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><form>
+              <table class="table table-bordered" id ="dsTinNhan">
                    
-                      <label><a href="#">EBook</a></label>
-                    </form></td>
-                        
-                        <td>08/09/2016</td>
-                        <td><a href ="#"><span class="glyphicon glyphicon-remove" style="color: red"></span></a></td>
-                      </tr>
                       <tr>
-                        <td><form>
-                    
-                      <label><a href="#">Started Ielts</a></label>
-                    </form></td>
-                       
-                        <td>15/01/2016</td>
-                         <td><a href ="#"><span class="glyphicon glyphicon-remove" style="color: red"></span></a></td>
+                        <th width="50%">Tiêu đề</th>
+                     	 <th>Người nhận</th>
+                        <th>Xóa</th>
                       </tr>
-                      <tr>
-                        <td><form>
-                    
-                      <label><a href="#">LongMan Ielts</a></label>
-                    </form></td>
-                        
-                        <td>28/07/2016</td>
-                         <td><a href ="#"><span class="glyphicon glyphicon-remove" style="color: red"></span></a></td>
-                      </tr>
-                    </tbody>
+               
                   </table>
-                   <center>
-                   <button class="btn btn-primary">1</button>
-                      <button class="btn btn-primary">2</button>
-                      <button class="btn btn-primary">></button>
-                    </center>
+                    <center>
+                 <span> Chuyển tới trang :  <input type ="number" name="page" id ="page" style ="width:50px">
+                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
+   				
+                  </center>
                 </div>
 
 

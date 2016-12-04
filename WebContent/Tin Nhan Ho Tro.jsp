@@ -85,12 +85,18 @@
               <label for="tieudeu">Tiêu đề</label>
               <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề ở đây">
             </div>
+             <div class="form-group">
+              <label for="tieudeu">Username người nhận </label>
+              <input type="text" class="form-control" id="usnhan" placeholder="Nhập tiêu đề ở đây">
+              <span class="help-block">Nếu muốn gửi cho người nào đó thì nhập username.Nếu để trống sẽ mặc định gửi cho Admin</span>
+            </div>
+            
             <div class="form-group">
               <label for="editor1">Nội dung</label>
-              <textarea class="form-control" rows="5" id="editor1"></textarea>
+              <textarea class="form-control" rows="5" id="noidung"></textarea>
             </div>
             <script type="text/javascript">
-                CKEDITOR.replace( 'editor1' );
+                CKEDITOR.replace( 'noidung' );
             </script>
           </form>
 
@@ -98,8 +104,9 @@
       </div>
       </div>
       </div>
-        <center><button class="btn btn-primary btn-lg" id="btnsend1" data-toggle="modal" data-target="#send1"><span class="glyphicon glyphicon-open"> Send</span></button></center>
-          <div class="modal fade" id="send1" role="dialog">
+        <center><button class="btn btn-primary btn-lg" id="btnsend1""><span class="glyphicon glyphicon-open"> Send</span></button></center>
+          
+          <div class="modal fade" id="guitinthanhcong" role="dialog">
                      <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                   <div class="modal-body">
@@ -114,10 +121,48 @@
                 </div>
               </div>
             </div>
+            
+             <div class="modal fade" id="guitinthatbai" role="dialog">
+                     <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <strong>Gửi tin nhắn thất bại !</strong> 
+                    </div>
+                   
+                  </div>
+                  <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="closeee">Close</button>
+              </div>
+                </div>
+              </div>
+            </div>
+            
             <center><a href="user xem lich su ho tro.jsp"><h3><span style="color: blue;">Xem lịch sử hỗ trợ</h3></span></a></center>
             <br/>
             <br />
  
+<script type="text/javascript">
+            $('#btnsend1').click(function(event){
+    			var td = $('#tieude').val();
+    			var hoten = $('#usnhan').val();
+    			var noidung = CKEDITOR.instances.noidung.getData();
+    	if(td == ""){
+    		alert("Nhập tiêu đề !");
+    		return;
+    	}
+    	if(noidung == ""){
+    		alert("Nhập nội dung !");
+    		return;
+    	}
+    			 $.get('GuiTinNhanServlet',{tieude:td,noidung:noidung,usernhan:hoten},function(responseText){
+    				
+    				 $('#'+responseText+'').modal('show');
+    			});  
+    			
+    			
+    		});
+            </script>
 <!--sdfsdfsdf-->   
 
      <br />

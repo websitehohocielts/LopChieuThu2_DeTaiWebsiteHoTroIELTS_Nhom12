@@ -15,6 +15,30 @@
   <script src="js/bootstrap.min.js"></script>
     <script src="editor/ckeditor.js"></script>
   <link href="fonts/glyphicons-halflings-regular.woff" rel="fonts">
+  
+  <script type="text/javascript">
+   
+   $(document).ready(function(){
+		  
+		  document.getElementById("page").value = 1;
+		   var page = $('#page').val();
+			$.get('DanhSachBaiVietServlet',{page:page},function(responseJson){
+				 if(responseJson!=null){
+	           	   $("#tblDanhSach").find("tr:gt(0)").remove();
+	           	   var table1 = $("#tblDanhSach");
+		               $.each(responseJson, function(key,value) { 
+		               		   var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+		               			rowNew.children().eq(0).html('<a href ="?'+value['id']+'" >'+value['tieude']+' </a>');
+		                       rowNew.children().eq(1).text(value['ngaytao']); 
+		                       rowNew.children().eq(2).html('<span class="glyphicon glyphicon-remove" id ='+value['id']+'></span>'); 
+		                       rowNew.appendTo(table1);
+		               });
+	               }
+			});
+		   
+	   })
+   </script>
+   
 </head>
 <body>
 <div class="panel-group">

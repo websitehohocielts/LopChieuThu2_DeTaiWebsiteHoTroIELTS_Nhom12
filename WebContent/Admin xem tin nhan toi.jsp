@@ -14,6 +14,31 @@
   <script src="js/bootstrap.min.js"></script>
   <link href="fonts/glyphicons-halflings-regular.woff" rel="fonts">
   <script type="text/javascript" src="editor/ckeditor.js"></script>
+  
+  
+  <script type="text/javascript">
+   
+   $(document).ready(function(){
+		  
+		  document.getElementById("page").value = 1;
+		   var page = $('#page').val();
+			$.get('LichSuTinNhanServlet',{page:page},function(responseJson){
+				 if(responseJson!=null){
+	           	   $("#dsTinNhan").find("tr:gt(0)").remove();
+	           	   var table1 = $("#dsTinNhan");
+		               $.each(responseJson, function(key,value) { 
+		               		   var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+		               			rowNew.children().eq(0).html('<a href ="Admin-xem-tra-loi-tin-nhan.jsp?'+value['id']+'" >'+value['tieude']+' </a>');
+		                       rowNew.children().eq(1).text(value['usernhan']); 
+		                       rowNew.children().eq(2).html('<span class="glyphicon glyphicon-remove" id ='+value['id']+'></span>'); 
+		                       rowNew.appendTo(table1);
+		               });
+	               }
+			});
+		   
+	   })
+   </script>
+   
 </head>
 <body>
 <div class="panel-group">
@@ -31,7 +56,7 @@
      
           <img src="admin.png" class="img-circle" align="left" width="100" height="100" /><strong>Xin chào Admin</strong><br>
         <br />
-          <a href="111.jsp"><u><strong>Đăng xuất</strong></u></a>
+          <a href="LogoutServlet"><u><strong>Đăng xuất</strong></u></a>
     <table class="table table-hover">
     <tbody>
      
@@ -57,99 +82,24 @@
         <div class="col-sm-8">
             <div class="panel-group">
           <div class="panel panel-info">
-          <div class="panel-heading"><strong><center><h4>Tin nhắn đến</h4></center></strong></div>
+          <div class="panel-heading"><strong><center><h4>Danh sách tin nhắn</h4></center></strong></div>
              <div class="panel-body">
 
                <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
-              <table class="table table-bordered">
-                    <thead><br/>
+               <table class="table table-bordered" id ="dsTinNhan">
                       <tr>
-                        <th>Tiêu đề</th>
-                        <th>Ngày gửi</th>
-                        <th>Username gửi</th>
-                        <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><form>
-                      <label><a id="tn1" href="#">Báo lỗi tại Test Reading</a></label>
-                    </div></form></td>
-                        <td><p id="ngay1">08/09/2016</p></td>
-                        <td><p id="nguoi1">byaspo19</p></td>
-                        <td><a id="linklisten1" href ="#"><span class="glyphicon glyphicon-remove"></span> </a></td>
+                        <th width="50%">Tiêu đề</th>
+                     	 <th>Người gửi</th>
+                        <th>Xóa</th>
                       </tr>
-                      <tr>
-                        <td><form>
-                      <label><a id="tn2" href="#">Làm sao để học tốt anh văn a ?</a></label>
-                    </div></form></td>
-                        <td><p id="ngay2">15/01/2016 </p></td>
-                        <td><p id="nguoi2">neymar192</p></td>
-                        <td><a id="linklisten2" href ="#"><span class="glyphicon glyphicon-remove"></span> </a></td>
-                      </tr>
-                      <tr>
-                        <td><form>
-                      <label><a id="tn3" href="#">Admin giúp em với ạ ??</a></label>
-                    </div></form></td>
-                        <td><p id="ngay3">28/07/2016</p> </td>
-                        <td><p id="nguoi3">messi1123</p></td>
-                        <td><a id="linklisten3" href ="#"><span class="glyphicon glyphicon-remove"></span> </a></td>
-                      </tr>
-                    </tbody>
                   </table>
-                   <center>
-                   <button class="btn btn-primary" onclick="laydanhsachListen(1)">1</button>
-                      <button class="btn btn-primary" onclick="laydanhsachListen(2)">2</button>
-                      <button class="btn btn-primary">></button>
-                      <script type="text/javascript">
-                      function laydanhsachListen(trang){
-                        var xhr = new XMLHttpRequest();
-                        xhr.onreadystatechange = function(){
-                          if(xhr.readyState ===4 && xhr.status===200){
-                            var items = JSON.parse(xhr.responseText);
-                      
-                            var trangkt = trang * 3 -1;
-                            var trangbd = trangkt-2;
-                             var y = 0;
-                            for(var index=0;index<items.length;index++){
-                               
-                              if(index >= trangbd && index<= trangkt)
-                              {
-                                y= y+1;
-                                if(y==1){
-                                document.getElementById("tn1").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay1").innerHTML = items[index].ngay;
-                                document.getElementById("linklisten1").href = items[index].linkbai;
-                                document.getElementById("nguoi1").innerHTML = items[index].nguoi;
-                                
-                                }
-                                if(y==2){
-                                   document.getElementById("tn2").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay2").innerHTML = items[index].ngay;
-                                document.getElementById("linklisten2").href = items[index].linkbai;
-                                document.getElementById("nguoi2").innerHTML = items[index].nguoi;
-                                
-                                }
-                                if(y==3){
-                                 document.getElementById("tn3").innerHTML = items[index].tenbai;
-                                document.getElementById("ngay3").innerHTML = items[index].ngay;
-                                document.getElementById("linklisten3").href = items[index].linkbai;
-                                document.getElementById("nguoi3").innerHTML = items[index].nguoi;
-                                
-                                }
-                               
-                              }
-                            }
-                         
-                          }
-                        }
-                        xhr.open("GET","adminxemtinnhanmoi .json","true");
-                        xhr.send();
-
-                      }
-                      </script>
-                    </center>
+                  
+                  <center>
+                 <span> Chuyển tới trang :  <input type ="number" name="page" id ="page" style ="width:50px">
+                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
+   				
+                  </center>
                 </div>
 
 
