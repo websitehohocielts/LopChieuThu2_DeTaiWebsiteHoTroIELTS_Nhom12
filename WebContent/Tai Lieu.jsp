@@ -67,11 +67,9 @@
 				
 	               $.each(responseJson, function(key,value) { 
 	            	   
-	            	   var div = document.createElement('div');
+	            	  /*  var div = document.createElement('div');
 	            	    div.className = 'row';
-	            	  /*   div.innerHTML = '<img id ="anh2" src="images/unit22.jpg" class="img-circle" align="left" width="50" height="50"/>'+
-          	          '<a id ="link2" href="hoc%20listening.jsp?'+value['id']+'"><p id="bai2">'+value['tieude']+'</p></a><br>'
-          	        		   */
+	            	 
 	            	     div.innerHTML = '<div class="col-md-2">'+
 	            	          '<a href="Xem Tai Lieu.jsp?'+value['id']+'"> <figure>'+
 	            	          '<img src="images/sach3.jpg" class="img-rounded" align="bottom" width="100" height="100">'+
@@ -85,11 +83,78 @@
 	            	     document.getElementById('ds').appendChild(div);
 	            	     document.getElementById('ds').appendChild(document.createElement("hv"));   
 	            	   
-	            	    
+	            	     */
+	            	   var div = document.createElement('div');
+
+	            	    div.className = 'row';
+
+	            	    div.innerHTML = '<img id ="anh2" src="images/unit22.jpg" class="img-circle" align="left" width="50" height="50" style ="margin-left: 10px"/>'+
+	            	          '<a id ="link2" href="Xem Tai Lieu.jsp?'+value['id']+'"><p id="bai2">'+value['tieude']+'</p></a><br>'
+
+	            	     document.getElementById('ds').appendChild(div);
+	            	    div.innerHTML = div.innerHTML + '<hr>';
 	               });
            }
 		}); 
+		  
+		  
+		  
+		  
    }
+   </script>
+   
+   <script type="text/javascript">
+   function chuyentran(){
+	   var page1 = $('#page').val();
+		  $.get('DanhSachTaiLieuServlet',{page:page1},function(responseJson){
+			 
+			 if(responseJson!=null){
+				 document.getElementById('ds').innerHTML = "";
+	               $.each(responseJson, function(key,value) { 
+	            	   
+	            	  /*  var div = document.createElement('div');
+	            	    div.className = 'row';
+	            	 
+	            	     /* div.innerHTML = '<div class="col-md-2">'+
+	            	          '<a href="Xem Tai Lieu.jsp?'+value['id']+'"> <figure>'+
+	            	          '<img src="images/sach3.jpg" class="img-rounded" align="bottom" width="100" height="100">'+
+	            	          '<figcaption><h4><p id="ten1">'+value['tieude']+'</p><h4></figcaption>'+
+	            	        '</figure></a>'+
+	            	          '</div>'+
+	            	          '<div class="col-md-8">'+
+	            	            '<p id="mieuta1" class="text justify" style="font-size: 14px">'+value['mota']+'</p><br /><br />'+
+	            	            '<span class="glyphicon glyphicon-save"></span></div>' 
+	            	            
+	            	            
+	            	            div.innerHTML = '<div class="col-md-2">'+
+		            	          '<a href="Xem Tai Lieu.jsp?'+value['id']+'"> <figure>'+
+		            	          '<img src="images/sach3.jpg" class="img-rounded" align="bottom" width="100" height="100">'+
+		            	        '</figure></a>'+
+		            	          '</div><br/><hr/>'+
+		            	          '<div class="col-md-8">'+
+		            	            '<p id="mieuta1" class="text justify" style="font-size: 14px">'+value['tieude']+'</p><br /><br />'+
+		            	            '<span class="glyphicon glyphicon-save"></span></div><br/><hr/>'
+
+	            	     document.getElementById('ds').appendChild(div);
+	            	     
+	            	     document.getElementById('ds').appendChild(document.createElement("hv"));   
+	            	    */
+	            	   var div = document.createElement('div');
+
+	            	    div.className = 'row';
+
+	            	    div.innerHTML = '<img id ="anh2" src="images/unit22.jpg" class="img-circle" align="left" width="50" height="50" style ="margin-left: 10px"/>'+
+	            	          '<a id ="link2" href="Xem Tai Lieu.jsp?'+value['id']+'"><p id="bai2">'+value['tieude']+'</p></a><br>'
+
+	            	     document.getElementById('ds').appendChild(div);
+	            	    div.innerHTML = div.innerHTML + '<hr>';
+	               });
+        }
+		}); 
+		  
+		  
+		  
+}
    </script>
 </head>
 <body style="background: url(images/background.jpg);">
@@ -130,7 +195,7 @@
      <center>
                  
                  <span> Chuyển tới trang :  <input type ="number" name="page" id ="page" style ="width:50px">
-                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
+                  <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentran()">Đến</button> </span> 
    				
                   </center>
       <br />

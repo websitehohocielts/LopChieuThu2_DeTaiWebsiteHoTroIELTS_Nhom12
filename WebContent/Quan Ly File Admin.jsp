@@ -56,7 +56,7 @@
      
           <img src="admin.png" class="img-circle" align="left" width="100" height="100" /><strong>Xin chào Admin</strong><br>
         <br />
-          <a href="111.jsp"><u><strong>Đăng xuất</strong></u></a>
+          <a href="LogoutServlet"><u><strong>Đăng xuất</strong></u></a>
     <table class="table table-hover">
     <tbody>
      
@@ -117,8 +117,14 @@
                       <input type="url" class="form-control" id="nhaptuurl" name = "nhaptuurl" placeholder="Enter url here">
                     </div>
                     
-                   
+                   <label class="radio-inline">
+				  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Tài liệu video
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Tài liệu văn bản - hình ảnh
+				</label>
                      <br/>
+                     <br />
                   <button type="button" class="btn btn-primary" onclick="upfile()">Upload</button>
                   <div class="modal fade" id="uploadfile" role="dialog">
                      <div class="modal-dialog modal-lg">

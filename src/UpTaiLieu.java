@@ -43,6 +43,24 @@ public class UpTaiLieu extends HttpServlet {
 		String link = request.getParameter("link");
 		String tieude = request.getParameter("tieude");
 		String mota = request.getParameter("mota");
+		
+		if(link.contains("youtube.com")){
+
+			link = "https://www.youtube.com/embed/"+link.substring(32);
+		}
+		if(link.contains("docs.google.com") || link.contains("drive.google.com")){
+
+			if(link.substring(link.length() -4 , link.length()).equals("view")){
+				link = link.substring(0, link.length()- 4) + "preview";
+			}
+			else{
+				if(link.substring(link.length() - 4, link.length()).equals("edit")){
+					link = link.substring(0, link.length()- 4) + "preview";
+				}
+				
+			}
+		}
+		
 		if(AdminThemTaiLieu(userup,link,tieude,mota)){
 			response.getWriter().write("uploadfile");
 		}
