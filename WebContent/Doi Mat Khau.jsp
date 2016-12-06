@@ -125,7 +125,7 @@
                         <input type="password" class="form-control" id="inputNS">
                     </div>
                     
-                    <center><button type="submit" class="btn btn-primary" id ="dmk">Save</button></center>
+                    <center><button type="button" class="btn btn-primary" id ="dmk">Save</button></center>
                     </form>
                     
                     <script>
@@ -151,7 +151,8 @@
                     		return true;
                     	}
                     }
-                    	$(document).ready(function(){
+                    	//function $(document).ready(function(){
+                    		//function dmkk(){
                     			$("#dmk").click(function(){
                     				if(!validateText("inputmkc")){
                     					return false;
@@ -163,18 +164,24 @@
                     					return false;
                     				}
                     				else{
-                    					alert("Đổi mật khẩu thành công");
+                    					var pas = $("#inputNS").val();
+                    					var pascu = $("#inputmkc").val();
+                    					$.get('DoiMatKhauServlet',{password:pas,pascu:pascu},function(responseText){
+                    						$('#'+responseText+'').modal('show');
+                    					});
                     				}
-                    			})
-                    		}		
-                    	)
+                    			});
+                    			//})
+                    	//	}	
+                    //	}
+                    	//)
                     </script>
-          <!--    <div class="modal fade" id="myModal" role="dialog">
+             <div class="modal fade" id="matkhaucukhongtrung" role="dialog">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-body">
-                    <div class="alert alert-success">
-                        <strong>Success!</strong> Thay đổi mật khẩu thành công.
+                    <div class="alert alert-danger">
+                        Mật khẩu cũ không hợp lệ 
                     </div>
                    
                   </div>
@@ -184,8 +191,39 @@
                 </div>
               </div>
             </div>
-            -->
+            
   
+      <div class="modal fade" id="doimatkhauthanhcong" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <div class="alert alert-success">
+                       Đổi mật khẩu thành công 
+                    </div>
+                   
+                  </div>
+                  <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+                </div>
+              </div>
+            </div>
+            
+                <div class="modal fade" id="doimatkhauthatbai" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <div class="alert alert-danger">
+                        Đổi mật khẩu thất bại ! 
+                    </div>
+                   
+                  </div>
+                  <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+                </div>
+              </div>
+            </div>
             </div>
         </div>
         </div>

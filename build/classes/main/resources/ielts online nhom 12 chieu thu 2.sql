@@ -47,13 +47,14 @@ create table lambaitest(
 						diem float
 						);
 create table tailieu(
-					id varchar(45) primary key,
+					id int(11) primary key,
 					tieude varchar(150) ,
 					ngayup date ,
 					link varchar(250), 
 					nguoiup varchar(20), 
 					loai int(11) ,
-					share bit(1)
+					share bit(1),
+					mota longtext
 					); 
 create table tinnhan (
 			id int(11) primary key,

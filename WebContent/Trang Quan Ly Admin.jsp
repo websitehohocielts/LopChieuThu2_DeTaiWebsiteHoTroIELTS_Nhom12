@@ -84,12 +84,16 @@
           <div class="panel panel-info">
           <div class="panel-heading"><strong><center><h4>Quản Lý Bài Viết</h4></center></strong></div>
              <div class="panel-body">
+             <button>
+             	Sửa
+             </button>
    <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home"><strong>Tất cả bài vết</strong></a></li>
                
                 <li><a data-toggle="tab" href="#menu2"><strong>Thêm bài viết mới</strong></a></li>
+                 <li><a data-toggle="tab" href="#menu3"><strong>Sửa bài viết</strong></a></li>
               </ul>
-
+				
               <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
           <div id ="bangdanhsach">
@@ -106,7 +110,6 @@
                   <button type="button" class="btn btn-primary btn-sm" name ="gopage" id ="gopage" onclick = "chuyentrang()">Đến</button> </span> 
    				
                   </center>
-                  
                   
                 </div>
                 

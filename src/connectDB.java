@@ -815,6 +815,31 @@ public class connectDB {
 		return dsbv;
 	}
 	
+	
+	public static boolean DoiMatKhau(String username,String password){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+		}
+		Connection cnn = null;
+		Statement stm = null;
+		try {
+			cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ieltsonline", "root", "cong12");
+		} catch (SQLException e1) {
+
+		}
+		try {
+			Statement stm1 = (Statement) cnn.createStatement();
+			
+			stm = (Statement) cnn.createStatement();
+			stm.executeUpdate("update ieltsonline.user set password = '"+password+"' where username = '"+username+"'");
+			cnn.close();
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
 
 }
 
